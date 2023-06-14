@@ -76,7 +76,7 @@ class ViewController: UIViewController {
             Result.text = "Error"
             return
         }
-        arreyOfReslut.append("\(num1)\(typeOperator)\(num2)=\(result)")
+        arreyOfReslut.append(" \(num1) \(typeOperator) \(num2) = \(result) ")
         Result.text = String(result)
         print(arreyOfReslut)
     }
