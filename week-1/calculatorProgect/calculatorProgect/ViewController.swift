@@ -6,7 +6,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var Result: UILabel!
     
     var numberInput: String = ""
-    
+    var arreyOfReslut : [String]=[]
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -76,8 +76,9 @@ class ViewController: UIViewController {
             Result.text = "Error"
             return
         }
-
+        arreyOfReslut.append("\(num1)\(typeOperator)\(num2)=\(result)")
         Result.text = String(result)
+        print(arreyOfReslut)
     }
 
 // A function that clears the screen for a new exercise
