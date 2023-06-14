@@ -11,19 +11,27 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+// A function that takes the numbers the user enters and displays them on the screen
     @IBAction func One(_ sender: UIButton) {
+        
         guard let numberValue = sender.titleLabel?.text else { return }
+        
         numberInput.append(numberValue)
         numbersToCalculate.text = numberInput
     }
     
+// A function that takes the operator the user enters and displays them on the screen
     @IBAction func Plus(_ sender: UIButton) {
+        
         guard let numberValue = sender.titleLabel?.text else { return }
+        
         numberInput.append(numberValue)
         numbersToCalculate.text = numberInput
     }
     
+// A function that calculates the result and displays them on the screen
     @IBAction func equal(_ sender: UIButton) {
+        
         guard !numberInput.isEmpty else { return }
         
         var num1 = 0
@@ -31,6 +39,7 @@ class ViewController: UIViewController {
         var operatorFound = false
         var typeOperator = ""
         
+// A loop that returns the numbers that the user entered and saves the operator
         for char in numberInput {
             if let number = Int(String(char)) {
                 if !operatorFound {
@@ -47,7 +56,9 @@ class ViewController: UIViewController {
         }
         
         var result: Double = 0.0
-
+        
+// Finding the correct operator and returning an answer according to the operator and the numbers
+        
         switch typeOperator {
         case "+":
             result = Double(num1 + num2)
@@ -69,6 +80,7 @@ class ViewController: UIViewController {
         Result.text = String(result)
     }
 
+// A function that clears the screen for a new exercise
     @IBAction func clear(_ sender: UIButton) {
         Result.text = "0"
         numberInput=""
