@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  CalculatorProject
+//  calculatorProgect
 //
-//  Created by Zvika-Yafi on 12/06/2023.
+//  Created by Zvika-Yafi on 14/06/2023.
 //
 
 import UIKit

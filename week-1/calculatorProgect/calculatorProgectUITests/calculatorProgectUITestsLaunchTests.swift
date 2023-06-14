@@ -1,13 +1,13 @@
 //
-//  CalculatorProjectUITestsLaunchTests.swift
-//  CalculatorProjectUITests
+//  calculatorProgectUITestsLaunchTests.swift
+//  calculatorProgectUITests
 //
-//  Created by Zvika-Yafi on 12/06/2023.
+//  Created by Zvika-Yafi on 14/06/2023.
 //
 
 import XCTest
 
-final class CalculatorProjectUITestsLaunchTests: XCTestCase {
+final class calculatorProgectUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
