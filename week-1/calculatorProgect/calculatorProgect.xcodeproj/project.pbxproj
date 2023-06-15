@@ -16,6 +16,7 @@
 		9E68E15A2A39B0210032F31E /* calculatorProgectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68E1592A39B0210032F31E /* calculatorProgectTests.swift */; };
 		9E68E1642A39B0210032F31E /* calculatorProgectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68E1632A39B0210032F31E /* calculatorProgectUITests.swift */; };
 		9E68E1662A39B0210032F31E /* calculatorProgectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68E1652A39B0210032F31E /* calculatorProgectUITestsLaunchTests.swift */; };
+		9E8C302A2A3A26F100AD1741 /* HViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8C30292A3A26F100AD1741 /* HViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9E68E15F2A39B0210032F31E /* calculatorProgectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = calculatorProgectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E68E1632A39B0210032F31E /* calculatorProgectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculatorProgectUITests.swift; sourceTree = "<group>"; };
 		9E68E1652A39B0210032F31E /* calculatorProgectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculatorProgectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9E8C30292A3A26F100AD1741 /* HViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				9E68E1442A39B0200032F31E /* SceneDelegate.swift */,
 				9E68E1462A39B0200032F31E /* ViewController.swift */,
 				9E68E1482A39B0200032F31E /* Main.storyboard */,
+				9E8C30292A3A26F100AD1741 /* HViewController.swift */,
 				9E68E14B2A39B0210032F31E /* Assets.xcassets */,
 				9E68E14D2A39B0210032F31E /* LaunchScreen.storyboard */,
 				9E68E1502A39B0210032F31E /* Info.plist */,
@@ -261,6 +264,7 @@
 				9E68E1472A39B0200032F31E /* ViewController.swift in Sources */,
 				9E68E1432A39B0200032F31E /* AppDelegate.swift in Sources */,
 				9E68E1452A39B0200032F31E /* SceneDelegate.swift in Sources */,
+				9E8C302A2A3A26F100AD1741 /* HViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
