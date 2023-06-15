@@ -28,9 +28,7 @@ class loginViewController: UIViewController {
               let pass = password?.text else {return}
         
         if isValidUserName(userName:name),
-           isValidpassword(password: pass)
-        {
-
+           isValidpassword(password: pass){
             self.performSegue(withIdentifier: "HomeScreen", sender: self)
         } else {
             return
