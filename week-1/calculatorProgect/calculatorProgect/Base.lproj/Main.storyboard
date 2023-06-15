@@ -250,7 +250,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="History"/>
                                 <connections>
                                     <action selector="gohistory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbS-Pu-0gb"/>
-                                    <segue destination="HRg-Zg-6N0" kind="show" identifier="YourSegueIdentifier" id="pR7-Vj-Y9N"/>
+                                    <segue destination="HRg-Zg-6N0" kind="show" identifier="goHistory" id="pR7-Vj-Y9N"/>
                                 </connections>
                             </button>
                         </subviews>

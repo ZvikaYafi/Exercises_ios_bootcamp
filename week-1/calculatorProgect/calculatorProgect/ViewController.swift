@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "YourSegueIdentifier" {
+        if segue.identifier == "goHistory" {
             let destinationVC = segue.destination as! HViewController
             destinationVC.historyArray = arreyOfReslut
         }
