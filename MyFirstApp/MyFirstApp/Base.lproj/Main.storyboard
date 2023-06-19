@@ -106,12 +106,12 @@
                     <connections>
                         <outlet property="password" destination="dQF-uF-3iR" id="irv-ru-Lro"/>
                         <outlet property="userName" destination="LpS-ha-VXb" id="eQd-tn-5xc"/>
-                        <segue destination="kmq-es-MTe" kind="show" identifier="HomeScreen" id="zyy-sx-mPH"/>
+                        <segue destination="kmq-es-MTe" kind="show" identifier="HomeScreen" id="6Ez-6z-ebM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tE-43-JsP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296.9465648854962" y="-337.32394366197184"/>
+            <point key="canvasLocation" x="-2" y="688"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="dS9-cb-1wA">
@@ -177,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGq-pM-Ttk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1323.3990147783252" y="325.60000000000002"/>
+            <point key="canvasLocation" x="1023" y="673"/>
         </scene>
         <!--Home Screen View Controller-->
         <scene sceneID="aXc-fe-cst">
@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FF5-La-6RR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2316" y="-25.862068965517242"/>
+            <point key="canvasLocation" x="561" y="1471"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DeC-pl-Okn">
