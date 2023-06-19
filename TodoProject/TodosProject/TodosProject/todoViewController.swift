@@ -11,6 +11,7 @@ class todoViewController: UIViewController {
         
         todoViewColection.dataSource = self
         todoViewColection.delegate = self
+        
         if let data = UserDefaults.standard.data(forKey: "TodoArray"),
            let todos = try? JSONDecoder().decode([Todo].self, from: data) {
             arrOfTodo = todos
