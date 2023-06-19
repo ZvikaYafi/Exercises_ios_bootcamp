@@ -1,11 +1,8 @@
+
 import UIKit
 
-import Foundation
-
-
-struct Todo:Codable {
+struct Todo: Codable {
     
-    var value : String
-    var indexOFArreyColor : Int
-    
+    var value: String
+    var indexOFArreyColor: Int
 }
