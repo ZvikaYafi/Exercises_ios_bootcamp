@@ -11,21 +11,19 @@ struct PostsManager {
     
     static let postsURL = "https://jsonplaceholder.typicode.com/posts"
     
-    static func fetchPosts(completion: @escaping ([Post]) -> Void) {
+    static func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void)  {
         
         if let url = URL(string: postsURL) {
-            
             let session = URLSession(configuration: .default)
-            
             let task = session.dataTask(with: url)  { (data, response, error) in
+                
                 if let error = error {
-                                
-                    return
+                    completion(.failure(error))
                 }
                 
                 if let safeData = data {
-                    let parsedPosts = self.parseJSON(postsData: safeData)
-                    completion(parsedPosts)
+                    let parsedPosts = parseJSON(postsData: safeData)
+                    completion(.success(parsedPosts))
                 }
             }
             task.resume()

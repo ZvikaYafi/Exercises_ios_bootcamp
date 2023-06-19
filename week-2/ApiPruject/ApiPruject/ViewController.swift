@@ -1,6 +1,5 @@
 import UIKit
 
-
 class ViewController: UIViewController {
     
     var posts: [Post] = []
@@ -8,10 +7,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PostsManager.fetchPosts { fetchedPosts in
+        PostsManager.fetchPosts { result in
             DispatchQueue.main.async {
-                self.posts = fetchedPosts
- 
+                
+                switch result {
+                case .success(let posts):
+                    self.posts = posts
+                    
+                case .failure(let error):
+                    print(error)
+                }
                 print(self.posts)
             }
         }
