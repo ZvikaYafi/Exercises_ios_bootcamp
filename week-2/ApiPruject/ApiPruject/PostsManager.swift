@@ -9,26 +9,30 @@ struct Post: Codable {
 
 struct PostsManager {
     
-    let postsURL = "https://jsonplaceholder.typicode.com/posts"
+    static let postsURL = "https://jsonplaceholder.typicode.com/posts"
     
-    func fetchPosts() {
+    static func fetchPosts(completion: @escaping ([Post]) -> Void) {
+        
         if let url = URL(string: postsURL) {
+            
             let session = URLSession(configuration: .default)
+            
             let task = session.dataTask(with: url)  { (data, response, error) in
                 if let error = error {
-                    print(error)
+                                
                     return
                 }
+                
                 if let safeData = data {
                     let parsedPosts = self.parseJSON(postsData: safeData)
-                    print(parsedPosts)
+                    completion(parsedPosts)
                 }
             }
             task.resume()
         }
     }
-
-    func parseJSON(postsData: Data) -> [Post] {
+    
+    static func parseJSON(postsData: Data) -> [Post] {
         let decoder = JSONDecoder()
         do {
             let posts = try decoder.decode([Post].self, from: postsData)
@@ -39,7 +43,3 @@ struct PostsManager {
         }
     }
 }
-
-
-
-
