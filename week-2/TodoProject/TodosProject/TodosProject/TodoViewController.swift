@@ -1,8 +1,11 @@
 import UIKit
+import CoreData
 
-class todoViewController: UIViewController {
+class TodoViewController: UIViewController {
     
-    var arrayOfTodo: [Todo] = []
+    var arrayOfTodo: [NSManagedObject] = []
+    private var managedObjectContext: NSManagedObjectContext?
+    var entity : NSEntityDescription?
     
     @IBOutlet weak var todoViewColection: UICollectionView!
     
@@ -33,11 +36,27 @@ class todoViewController: UIViewController {
     
     private func setupUI() {
         
-        // Load the saved todos from UserDefaults, if available
-        if let data = UserDefaults.standard.data(forKey: "TodoArray"),
-           let todos = try? JSONDecoder().decode([Todo].self, from: data) {
-            arrayOfTodo = todos
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        managedObjectContext = appDelegate.persistentContainer.viewContext
+        
+        guard let context = managedObjectContext else {return}
+        
+        entity = NSEntityDescription.entity(forEntityName: "Model", in: context)
+        
+        let request = NSFetchRequest<NSManagedObject>(entityName: "Model")
+        
+        do{
+            let result = try context.fetch(request)
+            arrayOfTodo = result
+            todoViewColection.reloadData()
+            
+        }catch {
+            fatalError("error")
         }
+        
+        
         
         // Set the data source and delegate for the collection view
         todoViewColection.dataSource = self
@@ -63,23 +82,33 @@ class todoViewController: UIViewController {
     //MARK: - Data Methods
     
     private func createToDo(for text: String) {
+        
+        guard let context = managedObjectContext,
+              let entity = entity else {return}
+
+        
         // Create a new todo with a random index of array color
         let random = Int.random(in: 0..<20)
-        let newTodo = Todo(value: text, indexOFArreyColor: random)
+        let newTodo = NSManagedObject(entity: entity, insertInto: managedObjectContext)
+        newTodo.setValue(text, forKey: "value")
+        newTodo.setValue(random, forKey: "indexOFArreyColor")
+        newTodo.setValue(UUID(), forKey: "id")
         
         // Add the new todo to the array and reload the collection view
-        arrayOfTodo.append(newTodo)
-        todoViewColection.reloadData()
-        
         // Save the updated todos to UserDefaults
-        if let encoded = try? JSONEncoder().encode(arrayOfTodo) {
-            UserDefaults.standard.set(encoded, forKey: "TodoArray" )
+
+        do {
+            try context.save()
+            arrayOfTodo.append(newTodo)
+            todoViewColection.reloadData()
+        }catch {
+            fatalError("data not saved")
         }
     }
     
 }
 
-extension todoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrayOfTodo.count
