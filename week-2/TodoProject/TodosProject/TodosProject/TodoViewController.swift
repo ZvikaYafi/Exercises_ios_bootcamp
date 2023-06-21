@@ -47,10 +47,13 @@ class TodoViewController: UIViewController {
                 return
             }
             CoreDataManager.shared.createToDoItem(withText: text)
+            
+            self.arrayOfTodo = CoreDataManager.shared.getAllToDoItems()
+            self.todoViewColection.reloadData()
         }
         alert.addAction(action)
     }
- 
+    
 }
 
 extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -93,12 +96,9 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
     private func showToDoView(todo: NSManagedObject) {
         
         let toDoView = ToDoView(frame: CGRect(x: 100, y: 300, width: 200, height: 200))
-        
         toDoView.title.text = todo.value(forKey: "value") as? String
         toDoView.isCompletedSwitch.isOn = todo.value(forKey: "isDone") as? Bool ?? false
-        
-        toDoView.toDo = todo
-        
+                
         self.view.addSubview(toDoView)
         
     }

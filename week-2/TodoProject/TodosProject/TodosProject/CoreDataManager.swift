@@ -8,6 +8,20 @@ class CoreDataManager {
     private lazy var managedObjectContext = appDelegate.persistentContainer.viewContext
     
     
+    
+    func getCurrentObject() -> NSManagedObject? {
+      
+        let request = NSFetchRequest<NSManagedObject>(entityName: "Model")
+        
+        do {
+            let results = try managedObjectContext.fetch(request)
+            return results.first
+        } catch {
+            print("Failed to fetch current object: \(error)")
+            return nil
+        }
+    }
+    
     func createToDoItem(withText text: String) {
         let newTodo = NSEntityDescription.insertNewObject(forEntityName: "Model", into: managedObjectContext)
         
@@ -21,16 +35,15 @@ class CoreDataManager {
         saveContext()
     }
     
-    func updateToDoItem(_ todo: NSManagedObject, withText text: String, isDone: Bool) {
-        todo.setValue(text, forKey: "value")
+    func updateToDoItem(_ todo: NSManagedObject, isDone: Bool) {
         todo.setValue(isDone, forKey: "isDone")
-        
         saveContext()
     }
     
     func deleteToDoItem(_ todo: NSManagedObject) {
+
         managedObjectContext.delete(todo)
-        
+        print("delete")
         saveContext()
     }
     
@@ -49,8 +62,9 @@ class CoreDataManager {
     
     private func saveContext() {
         do {
+            
             try managedObjectContext.save()
-            print(true)
+            
         } catch {
             fatalError("Failed to save context: \(error)")
         }
