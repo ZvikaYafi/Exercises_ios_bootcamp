@@ -27,11 +27,17 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CtV-P0-sn1">
-                    <rect key="frame" x="283" y="255" width="51" height="31"/>
+                    <rect key="frame" x="282.66666666666669" y="255" width="51" height="31"/>
                     <connections>
                         <action selector="isCompletedSwitchToggled:" destination="-1" eventType="valueChanged" id="9Vz-eV-sb0"/>
                     </connections>
                 </switch>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d99-uK-lV4">
+                    <rect key="frame" x="513" y="79" width="65" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="close"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>

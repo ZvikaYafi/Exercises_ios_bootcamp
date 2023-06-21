@@ -13,7 +13,6 @@ class TodoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
     }
     
@@ -22,13 +21,9 @@ class TodoViewController: UIViewController {
     // alert action
     @IBAction func AddTodo(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add Title", message: nil, preferredStyle: .alert)
-        
         alert.addTextField()
-        
         insertAddAction(for: alert)
-        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -36,27 +31,7 @@ class TodoViewController: UIViewController {
     
     private func setupUI() {
         
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        managedObjectContext = appDelegate.persistentContainer.viewContext
-        
-        guard let context = managedObjectContext else {return}
-        
-        entity = NSEntityDescription.entity(forEntityName: "Model", in: context)
-        
-        let request = NSFetchRequest<NSManagedObject>(entityName: "Model")
-        
-        do{
-            let result = try context.fetch(request)
-            arrayOfTodo = result
-            todoViewColection.reloadData()
-            
-        }catch {
-            fatalError("error")
-        }
-        
-        
+        arrayOfTodo = CoreDataManager.shared.getAllToDoItems()
         
         // Set the data source and delegate for the collection view
         todoViewColection.dataSource = self
@@ -65,48 +40,17 @@ class TodoViewController: UIViewController {
     
     private func insertAddAction(for alert: UIAlertController) {
         
-        let action = UIAlertAction(title: "Add", style: .default) { [weak self] action in
+        let action = UIAlertAction(title: "Add", style: .default) { action in
             
-            guard let self = self,
-                  let textfield = alert.textFields?.first,
-                  let text = textfield.text, !text.isEmpty else {
+            guard  let textfield = alert.textFields?.first,
+                   let text = textfield.text, !text.isEmpty else {
                 return
             }
-            
-            createToDo(for: text)
+            CoreDataManager.shared.createToDoItem(withText: text)
         }
-        
         alert.addAction(action)
     }
-    
-    //MARK: - Data Methods
-    
-    private func createToDo(for text: String) {
-        
-        guard let context = managedObjectContext,
-              let entity = entity else {return}
-        
-        
-        // Create a new todo with a random index of array color
-        let random = Int.random(in: 0..<20)
-        let newTodo = NSManagedObject(entity: entity, insertInto: managedObjectContext)
-        newTodo.setValue(text, forKey: "value")
-        newTodo.setValue(random, forKey: "indexColor")
-        newTodo.setValue(UUID(), forKey: "id")
-        newTodo.setValue(false, forKey: "isDone")
-        
-        // Add the new todo to the array and reload the collection view
-        // Save the updated todos to UserDefaults
-        
-        do {
-            try context.save()
-            arrayOfTodo.append(newTodo)
-            todoViewColection.reloadData()
-        }catch {
-            fatalError("data not saved")
-        }
-    }
-    
+ 
 }
 
 extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -147,7 +91,7 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     private func showToDoView(todo: NSManagedObject) {
-      
+        
         let toDoView = ToDoView(frame: CGRect(x: 100, y: 300, width: 200, height: 200))
         
         toDoView.title.text = todo.value(forKey: "value") as? String
@@ -156,7 +100,7 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
         toDoView.toDo = todo
         
         self.view.addSubview(toDoView)
-    
+        
     }
     
 }
