@@ -45,9 +45,11 @@ class TodoViewController: UIViewController {
             guard  let textfield = alert.textFields?.first,
                    let text = textfield.text, !text.isEmpty else {return}
             
-            CoreDataManager.shared.createToDoItem(withText: text)
+            let dataManeger = CoreDataManager.shared
             
-            self.arrayOfTodo = CoreDataManager.shared.getAllToDoItems()
+            dataManeger.createToDoItem(withText: text)
+            
+            self.arrayOfTodo = dataManeger.sortByIsDone(todoArray: dataManeger.getAllToDoItems())
             self.todoViewColection.reloadData()
         }
         alert.addAction(action)
@@ -87,6 +89,7 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     //MARK: - Cell Click Handling
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let todo = arrayOfTodo[indexPath.item]
         showToDoView(todo: todo)

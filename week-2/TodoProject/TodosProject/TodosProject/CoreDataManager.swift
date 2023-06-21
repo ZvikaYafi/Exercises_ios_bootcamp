@@ -46,6 +46,24 @@ class CoreDataManager {
         }
     }
     
+    func sortByIsDone(todoArray: [NSManagedObject]) -> [NSManagedObject] {
+        return todoArray.sorted { (todo1, todo2) -> Bool in
+            let isDone1 = todo1.value(forKey: "isDone") as? Bool ?? false
+            let isDone2 = todo2.value(forKey: "isDone") as? Bool ?? false
+            
+            if isDone1 == isDone2 {
+                return false
+            } else if isDone1 {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
+
+
+    
     private func saveContext() {
         do {
             try managedObjectContext.save()
