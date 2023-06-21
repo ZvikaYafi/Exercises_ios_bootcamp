@@ -31,6 +31,7 @@ class TodoViewController: UIViewController {
     
     private func setupUI() {
         
+        // import all object from CoreDataManager
         arrayOfTodo = CoreDataManager.shared.getAllToDoItems()
         
         // Set the data source and delegate for the collection view
@@ -47,8 +48,10 @@ class TodoViewController: UIViewController {
             
             let dataManeger = CoreDataManager.shared
             
+            // save todo in CoreData
             dataManeger.createToDoItem(withText: text)
             
+            // Import updated array and sort by isDone
             self.arrayOfTodo = dataManeger.sortByIsDone(todoArray: dataManeger.getAllToDoItems())
             self.todoViewColection.reloadData()
         }
@@ -97,6 +100,7 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     private func showToDoView(todo: NSManagedObject) {
         
+        // Creating an instance for view
         let toDoView = ToDoView(frame: CGRect(x: 100, y: 300, width: 200, height: 200))
         toDoView.title.text = todo.value(forKey: "value") as? String
         toDoView.isCompletedSwitch.isOn = todo.value(forKey: "isDone") as? Bool ?? false

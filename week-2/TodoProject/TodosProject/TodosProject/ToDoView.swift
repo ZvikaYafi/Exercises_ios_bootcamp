@@ -26,10 +26,12 @@ class ToDoView: UIView {
         addSubview(viewFromXib)
     }
     
+    // button of close view
     @IBAction func CloseButton(_ sender: UIButton) {
         removeFromSuperview()
     }
     
+    // butoon type switch that update todo object in Core Data
     @IBAction func isCompletedSwitchToggled(_ sender: UISwitch) {
         if let currentObject = todo {
             CoreDataManager.shared.updateToDoItem(currentObject, isDone: sender.isOn)
