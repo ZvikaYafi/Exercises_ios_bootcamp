@@ -59,9 +59,9 @@ class CoreDataManager {
             if isDone1 == isDone2 {
                 return false
             } else if isDone1 {
-                return true
-            } else {
                 return false
+            } else {
+                return true
             }
         }
     }

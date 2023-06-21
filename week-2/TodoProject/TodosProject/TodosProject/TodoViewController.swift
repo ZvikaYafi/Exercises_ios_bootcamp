@@ -32,7 +32,7 @@ class TodoViewController: UIViewController {
     private func setupUI() {
         
         // import all object from CoreDataManager
-        arrayOfTodo = CoreDataManager.shared.getAllToDoItems()
+        arrayOfTodo = CoreDataManager.shared.sortByIsDone(todoArray: CoreDataManager.shared.getAllToDoItems())
         
         // Set the data source and delegate for the collection view
         todoViewColection.dataSource = self
