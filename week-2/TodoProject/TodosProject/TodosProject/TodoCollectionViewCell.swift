@@ -10,7 +10,7 @@ class TodoCollectionViewCell: UICollectionViewCell {
     
     func setup(todo: NSManagedObject) {
         // Set the background color of the cell based on the index of the array color in the `colorData` array
-        self.backgroundColor = colorData[todo.value(forKey: "indexOFArreyColor") as! Int]
+        self.backgroundColor = colorData[todo.value(forKey: "indexColor") as! Int]
         
         // Set the text of the `todoCell` label to the value of the todo
         todoCell.text = todo.value(forKey: "value") as? String

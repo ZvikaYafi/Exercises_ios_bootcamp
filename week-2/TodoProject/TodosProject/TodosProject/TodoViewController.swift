@@ -4,10 +4,10 @@ import CoreData
 class TodoViewController: UIViewController {
     
     var arrayOfTodo: [NSManagedObject] = []
-    private var managedObjectContext: NSManagedObjectContext?
     var entity : NSEntityDescription?
-    
+    private var managedObjectContext: NSManagedObjectContext?
     @IBOutlet weak var todoViewColection: UICollectionView!
+    
     
     //MARK: - Life Cycle
     
@@ -85,18 +85,19 @@ class TodoViewController: UIViewController {
         
         guard let context = managedObjectContext,
               let entity = entity else {return}
-
+        
         
         // Create a new todo with a random index of array color
         let random = Int.random(in: 0..<20)
         let newTodo = NSManagedObject(entity: entity, insertInto: managedObjectContext)
         newTodo.setValue(text, forKey: "value")
-        newTodo.setValue(random, forKey: "indexOFArreyColor")
+        newTodo.setValue(random, forKey: "indexColor")
         newTodo.setValue(UUID(), forKey: "id")
+        newTodo.setValue(false, forKey: "isDone")
         
         // Add the new todo to the array and reload the collection view
         // Save the updated todos to UserDefaults
-
+        
         do {
             try context.save()
             arrayOfTodo.append(newTodo)
@@ -138,4 +139,26 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         return CGSize(width: width, height: height)
     }
+    
+    //MARK: - Cell Click Handling
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let todo = arrayOfTodo[indexPath.item]
+        showToDoView(todo: todo)
+    }
+    
+    private func showToDoView(todo: NSManagedObject) {
+      
+        let toDoView = ToDoView(frame: CGRect(x: 100, y: 300, width: 200, height: 200))
+        
+        toDoView.title.text = todo.value(forKey: "value") as? String
+        toDoView.isCompletedSwitch.isOn = todo.value(forKey: "isDone") as? Bool ?? false
+        
+        toDoView.toDo = todo
+        
+        self.view.addSubview(toDoView)
+    
+    }
+    
 }
+
+

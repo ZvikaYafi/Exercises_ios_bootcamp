@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToDoView" customModule="TodosProject" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="QCg-p0-wCW"/>
+                <outlet property="isCompletedSwitch" destination="CtV-P0-sn1" id="2yX-Oo-Z32"/>
+                <outlet property="title" destination="tci-Ma-FbQ" id="Hur-XS-nmQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="614" height="387"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToDo Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tci-Ma-FbQ">
+                    <rect key="frame" x="236.33333333333337" y="173.33333333333334" width="141.66666666666663" height="40.666666666666657"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CtV-P0-sn1">
+                    <rect key="frame" x="283" y="255" width="51" height="31"/>
+                    <connections>
+                        <action selector="isCompletedSwitchToggled:" destination="-1" eventType="valueChanged" id="9Vz-eV-sb0"/>
+                    </connections>
+                </switch>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="CtV-P0-sn1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ka8-9n-L7h"/>
+                <constraint firstItem="tci-Ma-FbQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="L0t-XV-D5g"/>
+                <constraint firstItem="tci-Ma-FbQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tzG-Qt-KY8"/>
+                <constraint firstItem="CtV-P0-sn1" firstAttribute="top" secondItem="tci-Ma-FbQ" secondAttribute="bottom" constant="41" id="ui3-Yg-EAG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="212.21374045801525" y="183.45070422535213"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
