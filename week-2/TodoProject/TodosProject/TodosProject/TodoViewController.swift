@@ -98,7 +98,8 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
         let toDoView = ToDoView(frame: CGRect(x: 100, y: 300, width: 200, height: 200))
         toDoView.title.text = todo.value(forKey: "value") as? String
         toDoView.isCompletedSwitch.isOn = todo.value(forKey: "isDone") as? Bool ?? false
-                
+        toDoView.todo = todo
+
         self.view.addSubview(toDoView)
         
     }

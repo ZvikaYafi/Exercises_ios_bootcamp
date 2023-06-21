@@ -7,6 +7,8 @@ class ToDoView: UIView {
     @IBOutlet weak var isCompletedSwitch: UISwitch!
     @IBOutlet weak var title: UILabel!
     
+    var todo: NSManagedObject?
+
     var entity : NSEntityDescription?
     var managedObjectContext: NSManagedObjectContext?
     
@@ -33,10 +35,10 @@ class ToDoView: UIView {
     
     
     @IBAction func isCompletedSwitchToggled(_ sender: UISwitch) {
-        if let currentObject = CoreDataManager.shared.getCurrentObject(){
-            
-            CoreDataManager.shared.updateToDoItem(currentObject, isDone: sender.isOn)
-        }
+        if let currentObject = todo {
+                   print("update")
+                   CoreDataManager.shared.updateToDoItem(currentObject, isDone: sender.isOn)
+               }
     }
     
     

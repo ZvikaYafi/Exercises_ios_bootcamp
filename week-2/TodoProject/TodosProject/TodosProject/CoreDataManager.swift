@@ -62,9 +62,7 @@ class CoreDataManager {
     
     private func saveContext() {
         do {
-            
             try managedObjectContext.save()
-            
         } catch {
             fatalError("Failed to save context: \(error)")
         }
