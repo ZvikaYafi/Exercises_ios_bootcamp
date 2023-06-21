@@ -8,9 +8,6 @@ class ToDoView: UIView {
     @IBOutlet weak var title: UILabel!
     
     var todo: NSManagedObject?
-
-    var entity : NSEntityDescription?
-    var managedObjectContext: NSManagedObjectContext?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,21 +27,12 @@ class ToDoView: UIView {
     }
     
     @IBAction func CloseButton(_ sender: UIButton) {
-        closeView()
-    }
-    
-    
-    @IBAction func isCompletedSwitchToggled(_ sender: UISwitch) {
-        if let currentObject = todo {
-                   print("update")
-                   CoreDataManager.shared.updateToDoItem(currentObject, isDone: sender.isOn)
-               }
-    }
-    
-    
-    private func closeView() {
         removeFromSuperview()
     }
     
-    
+    @IBAction func isCompletedSwitchToggled(_ sender: UISwitch) {
+        if let currentObject = todo {
+            CoreDataManager.shared.updateToDoItem(currentObject, isDone: sender.isOn)
+        }
+    }
 }

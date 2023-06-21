@@ -19,7 +19,7 @@ class TodoViewController: UIViewController {
     //MARK: - IBActions
     
     // alert action
-    @IBAction func AddTodo(_ sender: UIBarButtonItem) {
+    @IBAction func addTodo(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add Title", message: nil, preferredStyle: .alert)
         alert.addTextField()
         insertAddAction(for: alert)
@@ -43,9 +43,8 @@ class TodoViewController: UIViewController {
         let action = UIAlertAction(title: "Add", style: .default) { action in
             
             guard  let textfield = alert.textFields?.first,
-                   let text = textfield.text, !text.isEmpty else {
-                return
-            }
+                   let text = textfield.text, !text.isEmpty else {return}
+            
             CoreDataManager.shared.createToDoItem(withText: text)
             
             self.arrayOfTodo = CoreDataManager.shared.getAllToDoItems()
@@ -99,11 +98,9 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
         toDoView.title.text = todo.value(forKey: "value") as? String
         toDoView.isCompletedSwitch.isOn = todo.value(forKey: "isDone") as? Bool ?? false
         toDoView.todo = todo
-
-        self.view.addSubview(toDoView)
         
+        self.view.addSubview(toDoView)
     }
-    
 }
 
 

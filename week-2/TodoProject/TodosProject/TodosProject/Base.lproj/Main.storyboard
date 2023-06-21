@@ -113,7 +113,7 @@
                         <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RFO-hI-hfq">
                             <connections>
-                                <action selector="AddTodo:" destination="500-Mr-sC8" id="r6M-ry-FGG"/>
+                                <action selector="addTodo:" destination="500-Mr-sC8" id="r6M-ry-FGG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
