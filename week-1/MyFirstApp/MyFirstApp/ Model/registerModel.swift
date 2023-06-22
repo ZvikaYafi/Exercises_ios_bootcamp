@@ -30,7 +30,6 @@ class registerModel {
                 return
             }
             
-            
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: request) { (data, response, error) in
                 if let error = error {
@@ -40,7 +39,7 @@ class registerModel {
                 }
                 
                 if let data = data,
-                   let token = String(data: data, encoding: .utf8) {
+                   var token = String(data: data, encoding: .utf8) {
                     completion(token)
                 } else {
                     completion(nil)
