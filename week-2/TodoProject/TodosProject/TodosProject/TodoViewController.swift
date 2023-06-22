@@ -36,9 +36,7 @@ class TodoViewController: UIViewController {
         
         // import all object from CoreDataManager
         arrayOfTodo = CoreDataManager.shared.sortByIsDone(todoArray: CoreDataManager.shared.getAllToDoItems())
-        
                 todoViewColection.reloadData()
-
     }
     
     private func insertAddAction(for alert: UIAlertController) {
