@@ -19,6 +19,7 @@
 		9E2C5CAD2A3AFB6E0085D051 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5CAC2A3AFB6E0085D051 /* loginViewController.swift */; };
 		9E2C5CB12A3AFC7E0085D051 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5CB02A3AFC7E0085D051 /* signupViewController.swift */; };
 		9E2C5CB32A3B368B0085D051 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5CB22A3B368B0085D051 /* HomeScreenViewController.swift */; };
+		9EA2393D2A44465600F1EEAB /* registerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2393C2A44465600F1EEAB /* registerModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		9E2C5CAC2A3AFB6E0085D051 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		9E2C5CB02A3AFC7E0085D051 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		9E2C5CB22A3B368B0085D051 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		9EA2393C2A44465600F1EEAB /* registerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				9E2C5C822A3AEDAE0085D051 /* Main.storyboard */,
 				9E2C5CB22A3B368B0085D051 /* HomeScreenViewController.swift */,
 				9E2C5CB02A3AFC7E0085D051 /* signupViewController.swift */,
+				9EA2393C2A44465600F1EEAB /* registerModel.swift */,
 				9E2C5CAC2A3AFB6E0085D051 /* loginViewController.swift */,
 				9E2C5C852A3AEDAF0085D051 /* Assets.xcassets */,
 				9E2C5C872A3AEDAF0085D051 /* LaunchScreen.storyboard */,
@@ -271,6 +274,7 @@
 				9E2C5C812A3AEDAE0085D051 /* ViewController.swift in Sources */,
 				9E2C5CB12A3AFC7E0085D051 /* signupViewController.swift in Sources */,
 				9E2C5C7D2A3AEDAE0085D051 /* AppDelegate.swift in Sources */,
+				9EA2393D2A44465600F1EEAB /* registerModel.swift in Sources */,
 				9E2C5C7F2A3AEDAE0085D051 /* SceneDelegate.swift in Sources */,
 				9E2C5CB32A3B368B0085D051 /* HomeScreenViewController.swift in Sources */,
 			);
