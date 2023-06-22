@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToDoView" customModule="TodosProject" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="fca-3B-chg" id="leE-7g-o6m"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="QCg-p0-wCW"/>
                 <outlet property="isCompletedSwitch" destination="CtV-P0-sn1" id="2yX-Oo-Z32"/>
                 <outlet property="title" destination="tci-Ma-FbQ" id="Hur-XS-nmQ"/>

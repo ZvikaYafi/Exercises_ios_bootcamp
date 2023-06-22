@@ -13,7 +13,10 @@ class TodoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        todoViewColection.dataSource = self
+        todoViewColection.delegate = self
         setupUI()
+
     }
     
     //MARK: - IBActions
@@ -34,9 +37,8 @@ class TodoViewController: UIViewController {
         // import all object from CoreDataManager
         arrayOfTodo = CoreDataManager.shared.sortByIsDone(todoArray: CoreDataManager.shared.getAllToDoItems())
         
-        // Set the data source and delegate for the collection view
-        todoViewColection.dataSource = self
-        todoViewColection.delegate = self
+                todoViewColection.reloadData()
+
     }
     
     private func insertAddAction(for alert: UIAlertController) {
@@ -53,7 +55,7 @@ class TodoViewController: UIViewController {
             
             // Import updated array and sort by isDone
             self.arrayOfTodo = dataManeger.sortByIsDone(todoArray: dataManeger.getAllToDoItems())
-            self.todoViewColection.reloadData()
+            self.reloadData()
         }
         alert.addAction(action)
     }
@@ -102,11 +104,16 @@ extension TodoViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         // Creating an instance for view
         let toDoView = ToDoView(frame: CGRect(x: 100, y: 300, width: 200, height: 200))
+        toDoView.reloadData = reloadData
         toDoView.title.text = todo.value(forKey: "value") as? String
         toDoView.isCompletedSwitch.isOn = todo.value(forKey: "isDone") as? Bool ?? false
         toDoView.todo = todo
         
         self.view.addSubview(toDoView)
+    }
+    
+    func reloadData () {
+        setupUI()
     }
 }
 

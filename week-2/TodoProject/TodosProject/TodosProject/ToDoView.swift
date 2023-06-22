@@ -6,8 +6,10 @@ class ToDoView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var isCompletedSwitch: UISwitch!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
     
     var todo: NSManagedObject?
+    var reloadData : (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +30,7 @@ class ToDoView: UIView {
     
     // button of close view
     @IBAction func CloseButton(_ sender: UIButton) {
+        reloadData?()
         removeFromSuperview()
     }
     
