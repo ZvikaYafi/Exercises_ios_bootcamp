@@ -8,18 +8,20 @@ class ViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        Task {
+            await setupUI()
+        }
     }
     
-    func setupUI(){
+    func setupUI() async {
         titleTable.delegate = self
         titleTable.dataSource = self
         
-        PostsManager.shared.fetchPosts() { result in
+        await PostsManager.shared.fetchPosts() { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(_):
-                    self.titles = PostsManager.shared.getAllTitle()
+                case .success(let posts):
+                    self.titles = posts.map { $0.title }
                     self.titleTable.reloadData()
                 case .failure(let error):
                     print(error)

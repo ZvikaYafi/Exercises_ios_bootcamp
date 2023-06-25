@@ -16,16 +16,12 @@ class HomeScreenViewController: UIViewController {
         
         ProductsModel.shared.getAllProducts() { products in
             DispatchQueue.main.async {
-                if let product = products as? [Product] {
-                    self.productsArrey = products
-                    self.categoryTable.reloadData()
-                    
-                }
+                self.productsArrey = products
+                self.categoryTable.reloadData()
             }
         }
     }
-    
-}
+    }  
 
 extension HomeScreenViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,7 +38,7 @@ extension HomeScreenViewController : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedCategory = getAllCategoryTypes(products: productsArrey)[indexPath.row]
-
+        
         ProductsModel.shared.category = selectedCategory
         
         self.performSegue(withIdentifier: "goByCategory", sender: self)

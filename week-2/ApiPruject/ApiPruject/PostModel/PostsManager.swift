@@ -16,7 +16,8 @@ class PostsManager {
     
     var posts : [Post] = []
     
-    func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void)  {
+    
+    func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void) async {
         
         if let url = URL(string: postsURL) {
             let session = URLSession(configuration: .default)
@@ -36,11 +37,6 @@ class PostsManager {
             }
             task.resume()
         }
-    }
-    
-    
-    func getAllTitle() -> [String] {
-        return posts.map { $0.title }
     }
     
     
