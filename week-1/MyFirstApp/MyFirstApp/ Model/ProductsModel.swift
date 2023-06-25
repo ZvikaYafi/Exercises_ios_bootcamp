@@ -67,7 +67,6 @@ class ProductsModel {
     }
     
     func getProductsByCategory() -> [Product] {
-        
         let filteredProducts = self.allProducts.filter { $0.category == category }
         return filteredProducts
     }

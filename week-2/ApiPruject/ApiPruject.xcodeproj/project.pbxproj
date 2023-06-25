@@ -101,11 +101,12 @@
 		9EE80DBF2A404A2A00643AB7 /* ApiPruject */ = {
 			isa = PBXGroup;
 			children = (
+				9EEEAFE72A48681500AE167F /* PostView */,
+				9EEEAFE62A4867FD00AE167F /* PostViewModel */,
+				9EEEAFE52A4867D800AE167F /* PostModel */,
 				9EE80DC02A404A2A00643AB7 /* AppDelegate.swift */,
 				9EE80DC22A404A2A00643AB7 /* SceneDelegate.swift */,
-				9EE80DC42A404A2A00643AB7 /* ViewController.swift */,
 				9EE80DC62A404A2A00643AB7 /* Main.storyboard */,
-				9EE80DF02A404A6000643AB7 /* PostsManager.swift */,
 				9EE80DC92A404A2B00643AB7 /* Assets.xcassets */,
 				9EE80DCB2A404A2B00643AB7 /* LaunchScreen.storyboard */,
 				9EE80DCE2A404A2C00643AB7 /* Info.plist */,
@@ -128,6 +129,29 @@
 				9EE80DE32A404A2C00643AB7 /* ApiPrujectUITestsLaunchTests.swift */,
 			);
 			path = ApiPrujectUITests;
+			sourceTree = "<group>";
+		};
+		9EEEAFE52A4867D800AE167F /* PostModel */ = {
+			isa = PBXGroup;
+			children = (
+				9EE80DF02A404A6000643AB7 /* PostsManager.swift */,
+			);
+			path = PostModel;
+			sourceTree = "<group>";
+		};
+		9EEEAFE62A4867FD00AE167F /* PostViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PostViewModel;
+			sourceTree = "<group>";
+		};
+		9EEEAFE72A48681500AE167F /* PostView */ = {
+			isa = PBXGroup;
+			children = (
+				9EE80DC42A404A2A00643AB7 /* ViewController.swift */,
+			);
+			path = PostView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

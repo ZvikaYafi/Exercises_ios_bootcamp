@@ -7,11 +7,16 @@ struct Post: Codable {
     let body: String
 }
 
-struct PostsManager {
+
+class PostsManager {
     
-    static let postsURL = "https://jsonplaceholder.typicode.com/posts"
+    let postsURL = "https://jsonplaceholder.typicode.com/posts"
     
-    static func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void)  {
+    static let shared = PostsManager()
+    
+    var posts : [Post] = []
+    
+    func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void)  {
         
         if let url = URL(string: postsURL) {
             let session = URLSession(configuration: .default)
@@ -22,29 +27,30 @@ struct PostsManager {
                 }
                 
                 if let safeData = data {
-                    let parsedPosts = parseJSON(postsData: safeData)
+                    let parsedPosts = self.parseJSON(postsData: safeData)
+                    self.posts = parsedPosts
                     completion(.success(parsedPosts))
+                }else {
+                    completion(.failure("error json" as! Error))
                 }
             }
             task.resume()
         }
     }
     
-    func getAllTitle(){
-        
-        
+    
+    func getAllTitle() -> [String] {
+        return posts.map { $0.title }
     }
     
     
-    
-    
-    static func parseJSON(postsData: Data) -> [Post] {
+    func parseJSON(postsData: Data) -> [Post] {
         let decoder = JSONDecoder()
         do {
             let posts = try decoder.decode([Post].self, from: postsData)
             return posts
         } catch {
-            print("error \(error)")
+            print()
             return []
         }
     }
