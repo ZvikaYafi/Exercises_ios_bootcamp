@@ -36,7 +36,7 @@ class ProductsModel {
             
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             let session = URLSession(configuration: .default)
-
+            
         } else {
             print("token invalid")
         }
@@ -71,5 +71,5 @@ class ProductsModel {
         let filteredProducts = self.allProducts.filter { $0.category == category }
         return filteredProducts
     }
-
+    
 }

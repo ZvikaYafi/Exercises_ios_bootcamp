@@ -1,9 +1,4 @@
-//
-//  ProductsViewController.swift
-//  MyFirstApp
-//
-//  Created by Zvika-Yafi on 22/06/2023.
-//
+
 
 import UIKit
 
@@ -23,11 +18,8 @@ class ProductsViewController: UIViewController {
         ProductViewCollection.delegate = self
         
     }
-    
-
- 
-
 }
+
 extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,22 +32,5 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
         // Configure the cell with the corresponding todo
         cell.setup(product: ProductsArrey[indexPath.item])
         return cell
-    }
-
-    // Setting the appropriate height and width for each cell
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let collectionViewWidth = collectionView.bounds.width
-//
-//        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
-//            return CGSize(width: 0, height: 0)
-//        }
-//
-//        let spaceBetweenCells = flowLayout.minimumInteritemSpacing
-//        let adjustedWidth = collectionViewWidth - spaceBetweenCells
-//
-//        let width: CGFloat = adjustedWidth / 2
-//        let height: CGFloat = 150
-        
-        return CGSize(width: 350, height: 200)
     }
 }

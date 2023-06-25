@@ -9,7 +9,6 @@ class ViewController: UIViewController {
         
         PostsManager.fetchPosts { result in
             DispatchQueue.main.async {
-                
                 switch result {
                 case .success(let posts):
                     self.posts = posts

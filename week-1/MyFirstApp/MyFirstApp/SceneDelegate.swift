@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  MyFirstApp
-//
-//  Created by Zvika-Yafi on 15/06/2023.
-//
 
 import UIKit
 

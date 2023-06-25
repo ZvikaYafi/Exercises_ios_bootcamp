@@ -29,4 +29,12 @@ class signupViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let userName = firstName?.text ?? ""
+        if segue.identifier == "HomeScreen2" {
+            let destinationVC = segue.destination as? HomeScreenViewController
+            destinationVC?.userName = userName
+        }
+    }
 }

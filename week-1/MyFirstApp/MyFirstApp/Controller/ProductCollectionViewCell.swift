@@ -13,16 +13,15 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productImage: UIImageView!
     
     func setup(product: Product) {
-           productTitle.text = product.title
-           
-           if let imageURL = URL(string: product.images[0]) {
-               DispatchQueue.global().async {
-                   if let imageData = try? Data(contentsOf: imageURL) {
-                       DispatchQueue.main.async {
-                           self.productImage.image = UIImage(data: imageData)
-                       }
-                   }
-               }
-           }
-       }
+        productTitle.text = product.title
+
+        // need impruve
+        if let imageURL = URL(string: product.images[0]) {
+            if let imageData = try? Data(contentsOf: imageURL) {
+                DispatchQueue.main.async {
+                    self.productImage.image = UIImage(data: imageData)
+                }
+            }
+        }
+    }
 }

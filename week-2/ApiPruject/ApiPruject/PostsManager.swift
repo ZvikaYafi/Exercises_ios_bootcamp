@@ -30,6 +30,14 @@ struct PostsManager {
         }
     }
     
+    func getAllTitle(){
+        
+        
+    }
+    
+    
+    
+    
     static func parseJSON(postsData: Data) -> [Post] {
         let decoder = JSONDecoder()
         do {
