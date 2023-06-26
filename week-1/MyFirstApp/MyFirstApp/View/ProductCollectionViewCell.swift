@@ -1,9 +1,3 @@
-//
-//  ProductCollectionViewCell.swift
-//  MyFirstApp
-//
-//  Created by Zvika-Yafi on 22/06/2023.
-//
 
 import UIKit
 
