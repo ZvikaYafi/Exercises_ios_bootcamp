@@ -3,58 +3,61 @@ import UIKit
 class HomeScreenViewController: UIViewController {
     
     var userName: String = ""
-    var productsArrey : [Product] = []
+    var productsArray : [Product] = []
     @IBOutlet weak var categoryTable: UITableView!
     
     override func viewDidLoad()  {
         super.viewDidLoad()
         self.title = "Welcome \(userName)"
         Task {
-            
             await setupUI()
-            
         }
-        
     }
     
-    
     func setupUI() async {
-        
         categoryTable.delegate = self
         categoryTable.dataSource = self
         
-        await ProductsModel.shared.getAllProducts() { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let Producst) :
-                    self.productsArrey = Producst
-                    
-                case .failure(let error):
-                    print(error)
-                }
-                self.categoryTable.reloadData()
-            }
+        do {
+            productsArray = try await ProductsModel.shared.getAllProducts()
+        } catch {
+            handleError(error)
         }
-        
     }
     
+    func handleError(_ error: Error) {
+        if let urlError = error as? URLError {
+            switch urlError.code {
+            case .userAuthenticationRequired:
+                print("User authentication is required")
+            case .badServerResponse:
+                print("Bad server response")
+            case .badURL:
+                print("Bad URL")
+            default:
+                print("An error occurred: \(urlError.localizedDescription)")
+            }
+        } else {
+            print("An error occurred: \(error.localizedDescription)")
+        }
+    }
 }
 
 extension HomeScreenViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getAllCategoryTypes(products: productsArrey).count
+        return getAllCategoryTypes(products: productsArray).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "category", for: indexPath)
-        cell.textLabel?.text = getAllCategoryTypes(products: productsArrey)[indexPath.row]
+        cell.textLabel?.text = getAllCategoryTypes(products: productsArray)[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedCategory = getAllCategoryTypes(products: productsArrey)[indexPath.row]
+        let selectedCategory = getAllCategoryTypes(products: productsArray)[indexPath.row]
         
         ProductsModel.shared.category = selectedCategory
         

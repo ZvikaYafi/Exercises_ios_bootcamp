@@ -23,7 +23,9 @@ class ProductsModel {
     var category: String?
     var productsURL = "https://balink.onlink.dev/products"
     
-    func getAllProducts(completion: @escaping (Result<[Product], Error>) -> Void) async {
+    
+    
+    func getAllProducts() async throws -> [Product] {
         if let url = URL(string: productsURL) {
             
             var request = URLRequest(url: url)
@@ -32,36 +34,30 @@ class ProductsModel {
             if let token = istoken {
                 request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             } else {
-                completion(.failure("token invalid" as! Error))
+                throw URLError(.userAuthenticationRequired)
             }
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: request)  { (data, response, error) in
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            if let res = response as? HTTPURLResponse ,
+               res.statusCode == 200 {
                 
-                if let error = error {
-                    completion(.failure(error))
-                }
-                if let safeData = data {
-                    let parsedProducts = self.parseJSON(productsData: safeData)
-                    self.allProducts = parsedProducts
-                    completion(.success(parsedProducts))
-                }else {
-                    completion(.failure("error json" as! Error))
-                }
+                let parsedProducts = try self.parseJSON(productsData: data)
+                self.allProducts = parsedProducts
+                return parsedProducts
             }
-            task.resume()
+            throw URLError(.badServerResponse)
         }
+        throw URLError(.badURL)
     }
     
-    func parseJSON(productsData: Data) -> [Product] {
+    
+    func parseJSON(productsData: Data) throws -> [Product] {
         let decoder = JSONDecoder()
-        do {
-            let products = try decoder.decode([Product].self, from: productsData)
-            return products
-        } catch {
-            print()
-            return []
-        }
+        return try decoder.decode([Product].self, from: productsData)
+        
     }
+    
     
     func getProductsByCategory() -> [Product] {
         let filteredProducts = self.allProducts.filter { $0.category == category }
