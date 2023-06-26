@@ -1,39 +1,44 @@
 import UIKit
 
-class HomeScreenViewController: UIViewController {
+class TableCategoryViewController: UIViewController {
     
     var userName: String = ""
-    var productsArray : [Product] = []
+    
+    
     @IBOutlet weak var categoryTable: UITableView!
     
-    override func viewDidLoad()  {
+    var productViewModel = ProductViewModel()
+    
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = "Welcome \(userName)"
         
         categoryTable.delegate = self
         categoryTable.dataSource = self
+        
+        Task {
+            try await productViewModel.getProductsFromServices()
+            categoryTable.reloadData()
+        }
     }
 
 }
 
-extension HomeScreenViewController : UITableViewDelegate, UITableViewDataSource {
+extension TableCategoryViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ProductViewModel.shared.getAllCategoryTypes().count
+        
+        return productViewModel.countRow()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return ProductViewModel.shared.getCell(tableView, didSelectRowAt: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "category", for: indexPath)
+        cell.textLabel?.text = productViewModel.getText(index: indexPath.row)
+        return cell
         
-        let selectedCategory =  ProductViewModel.shared.getAllCategoryTypes()[indexPath.row]
-        
-        ProductViewModel.shared.category = selectedCategory
-        
-        self.performSegue(withIdentifier: "goByCategory", sender: self)
     }
 }
 

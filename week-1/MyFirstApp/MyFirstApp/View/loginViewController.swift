@@ -38,7 +38,7 @@ class loginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userName = userName?.text ?? ""
         if segue.identifier == "HomeScreen" {
-            let destinationVC = segue.destination as? HomeScreenViewController
+            let destinationVC = segue.destination as? TableCategoryViewController
             destinationVC?.userName = userName
         }
     }

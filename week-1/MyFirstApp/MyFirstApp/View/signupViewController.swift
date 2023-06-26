@@ -14,26 +14,22 @@ class signupViewController: UIViewController {
         self.title = "Sign-up"
     }
     
-    @IBAction func SignUp(_ sender: UIButton) {
-        guard let firstNameText = firstName.text,
-              let lastNameText = lastName.text,
-              let userNameText = userName.text,
-              let passwordText = password.text else { return }
+    @IBAction func singUpButton(_ sender: UIButton) {
         
-        registerModel.shared.registerUser(firstName: firstNameText, lastName: lastNameText, userName: userNameText, password: passwordText) { token in
-            DispatchQueue.main.async {
-                
-                ProductsModel.shared.istoken = token
-                
-                self.performSegue(withIdentifier: "HomeScreen2", sender: self)
-            }
+            guard let firstNameText = firstName.text,
+                  let lastNameText = lastName.text,
+                  let userNameText = userName.text,
+                  let passwordText = password.text else { return }
+        Task {
+           try await  Register.shared.registerUser(firstName: firstNameText, lastName: lastNameText, userName: userNameText, password: passwordText)
+            self.performSegue(withIdentifier: "HomeScreen2", sender: self)
         }
+        
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userName = firstName?.text ?? ""
         if segue.identifier == "HomeScreen2" {
-            let destinationVC = segue.destination as? HomeScreenViewController
+            let destinationVC = segue.destination as? TableCategoryViewController
             destinationVC?.userName = userName
         }
     }
