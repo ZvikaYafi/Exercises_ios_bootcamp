@@ -15,55 +15,52 @@ struct Product: Codable {
 }
 
 class ProductsModel {
+    
     static let shared = ProductsModel()
     
     var allProducts : [Product] = []
     var istoken: String?
     var category: String?
-    
     var productsURL = "https://balink.onlink.dev/products"
     
-    func getAllProducts(completion: @escaping ([Product]) -> Void) {
-        guard let url = URL(string: productsURL) else {
-            print("Invalid URL")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        if let token = istoken {
+    func getAllProducts(completion: @escaping (Result<[Product], Error>) -> Void) async {
+        if let url = URL(string: productsURL) {
             
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            let session = URLSession(configuration: .default)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
             
-        } else {
-            print("token invalid")
-        }
-        
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Error:", error)
-                return
-            }
-            
-            if let data = data {
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let products = try decoder.decode([Product].self, from: data)
-                    self.allProducts = products
-                    completion(products)
-                } catch {
-                    print("Error decoding JSON data:", error)
-                }
+            if let token = istoken {
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             } else {
-                print("No data received")
+                completion(.failure("token invalid" as! Error))
             }
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: request)  { (data, response, error) in
+                
+                if let error = error {
+                    completion(.failure(error))
+                }
+                if let safeData = data {
+                    let parsedProducts = self.parseJSON(productsData: safeData)
+                    self.allProducts = parsedProducts
+                    completion(.success(parsedProducts))
+                }else {
+                    completion(.failure("error json" as! Error))
+                }
+            }
+            task.resume()
         }
-        
-        task.resume()
+    }
+    
+    func parseJSON(productsData: Data) -> [Product] {
+        let decoder = JSONDecoder()
+        do {
+            let products = try decoder.decode([Product].self, from: productsData)
+            return products
+        } catch {
+            print()
+            return []
+        }
     }
     
     func getProductsByCategory() -> [Product] {

@@ -6,22 +6,39 @@ class HomeScreenViewController: UIViewController {
     var productsArrey : [Product] = []
     @IBOutlet weak var categoryTable: UITableView!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()  {
         super.viewDidLoad()
+        self.title = "Welcome \(userName)"
+        Task {
+            
+            await setupUI()
+            
+        }
+        
+    }
+    
+    
+    func setupUI() async {
         
         categoryTable.delegate = self
         categoryTable.dataSource = self
         
-        self.title = "Welcome \(userName)"
-        
-        ProductsModel.shared.getAllProducts() { products in
+        await ProductsModel.shared.getAllProducts() { result in
             DispatchQueue.main.async {
-                self.productsArrey = products
+                switch result {
+                case .success(let Producst) :
+                    self.productsArrey = Producst
+                    
+                case .failure(let error):
+                    print(error)
+                }
                 self.categoryTable.reloadData()
             }
         }
+        
     }
-    }  
+    
+}
 
 extension HomeScreenViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,6 +72,8 @@ func getAllCategoryTypes(products: [Product]) -> [String] {
     }
     return allCategory
 }
+
+
 
 
 

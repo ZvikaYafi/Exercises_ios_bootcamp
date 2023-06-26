@@ -31,7 +31,7 @@ class ToDoView: UIView {
     // button of close view
     @IBAction func CloseButton(_ sender: UIButton) {
         reloadData?()
-        removeFromSuperview()
+       removeFromSuperview()
     }
     
     // butoon type switch that update todo object in Core Data
