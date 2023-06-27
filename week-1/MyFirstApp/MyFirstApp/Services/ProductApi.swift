@@ -7,7 +7,6 @@ class ProductApi {
     var token: String?
     
     static var shared = ProductApi()
-
     
     func getAllProducts() async throws -> [Product] {
         if let url = URL(string: productsURL) {

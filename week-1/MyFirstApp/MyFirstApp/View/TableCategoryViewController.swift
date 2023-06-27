@@ -23,20 +23,18 @@ class TableCategoryViewController: UIViewController {
             categoryTable.reloadData()
         }
     }
-
 }
 
 extension TableCategoryViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return productViewModel.countRow()
+        return productViewModel.getCountOfCategories()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "category", for: indexPath)
-        cell.textLabel?.text = productViewModel.getText(index: indexPath.row)
+        cell.textLabel?.text = productViewModel.getCategoryText(index: indexPath.row)
         return cell
         
     }
