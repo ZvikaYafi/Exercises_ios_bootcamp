@@ -1,13 +1,13 @@
 //
-//  BigProjectUITestsLaunchTests.swift
-//  BigProjectUITests
+//  PostsProjectUITestsLaunchTests.swift
+//  PostsProjectUITests
 //
-//  Created by Zvika-Yafi on 26/06/2023.
+//  Created by Zvika-Yafi on 27/06/2023.
 //
 
 import XCTest
 
-final class BigProjectUITestsLaunchTests: XCTestCase {
+final class PostsProjectUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
