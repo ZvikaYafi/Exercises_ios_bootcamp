@@ -18,12 +18,7 @@ struct CommentsView: View {
                 List(comments) { comment in
                     // Create a horizontal stack (`HStack`) container
                     HStack {
-                        // Display the comment's ID
-                        Text("\(comment.id ?? 0)")
-                            .font(.headline)
-                            .foregroundColor(.blue)
-                            .frame(width: 30)
-                        
+                       
                         // Display the comment's body
                         Text(comment.body ?? "")
                             .foregroundColor(.primary)
@@ -37,7 +32,7 @@ struct CommentsView: View {
         }
         // Trigger the `getComments` method when the view appears
         .onAppear {
-            self.commentsViewModel.getComments(podtId: post?.id ?? 0)
+            self.commentsViewModel.getComments(postId: post?.id ?? 0)
         }
     }
 }
