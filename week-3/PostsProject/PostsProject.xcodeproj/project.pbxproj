@@ -17,6 +17,10 @@
 		9E6E0AA82A4AEB29005C4B97 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AA72A4AEB29005C4B97 /* Post.swift */; };
 		9E6E0AAB2A4AEC92005C4B97 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AAA2A4AEC92005C4B97 /* PostApi.swift */; };
 		9E6E0AAD2A4AEDFC005C4B97 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AAC2A4AEDFC005C4B97 /* PostViewModel.swift */; };
+		9E6E0AAF2A4B0A74005C4B97 /* DataListPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AAE2A4B0A74005C4B97 /* DataListPost.swift */; };
+		9E6E0AB12A4B21DD005C4B97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AB02A4B21DD005C4B97 /* User.swift */; };
+		9E6E0AB32A4B2238005C4B97 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AB22A4B2238005C4B97 /* UserApi.swift */; };
+		9E6E0AB52A4B2374005C4B97 /* UserVieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0AB42A4B2374005C4B97 /* UserVieModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		9E6E0AA72A4AEB29005C4B97 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9E6E0AAA2A4AEC92005C4B97 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
 		9E6E0AAC2A4AEDFC005C4B97 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		9E6E0AAE2A4B0A74005C4B97 /* DataListPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListPost.swift; sourceTree = "<group>"; };
+		9E6E0AB02A4B21DD005C4B97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9E6E0AB22A4B2238005C4B97 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		9E6E0AB42A4B2374005C4B97 /* UserVieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVieModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				9E6E0AA72A4AEB29005C4B97 /* Post.swift */,
+				9E6E0AB02A4B21DD005C4B97 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9E6E0AAC2A4AEDFC005C4B97 /* PostViewModel.swift */,
+				9E6E0AB42A4B2374005C4B97 /* UserVieModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -156,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				9E5A298C2A4AE94300D5D69A /* ContentView.swift */,
+				9E6E0AAE2A4B0A74005C4B97 /* DataListPost.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				9E6E0AAA2A4AEC92005C4B97 /* PostApi.swift */,
+				9E6E0AB22A4B2238005C4B97 /* UserApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -299,10 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E6E0AAD2A4AEDFC005C4B97 /* PostViewModel.swift in Sources */,
+				9E6E0AB32A4B2238005C4B97 /* UserApi.swift in Sources */,
 				9E6E0AAB2A4AEC92005C4B97 /* PostApi.swift in Sources */,
 				9E5A298D2A4AE94300D5D69A /* ContentView.swift in Sources */,
+				9E6E0AAF2A4B0A74005C4B97 /* DataListPost.swift in Sources */,
+				9E6E0AB52A4B2374005C4B97 /* UserVieModel.swift in Sources */,
 				9E6E0AA82A4AEB29005C4B97 /* Post.swift in Sources */,
 				9E5A298B2A4AE94300D5D69A /* PostsProjectApp.swift in Sources */,
+				9E6E0AB12A4B21DD005C4B97 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

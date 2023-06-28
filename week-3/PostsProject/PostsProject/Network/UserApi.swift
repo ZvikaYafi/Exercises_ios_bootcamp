@@ -1,15 +1,14 @@
 
 import Foundation
 
-struct PostApi  {
+struct UserApi  {
     
-    let postsURL = "https://jsonplaceholder.typicode.com/posts"
      
-     static let shared = PostApi()
+     static let shared = UserApi()
      
-     func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void)  {
+    func fetchUser(userId: Int ,completion: @escaping (Result<User, Error>) -> Void)  {
          
-         if let url = URL(string: postsURL) {
+         if let url = URL(string: "https://jsonplaceholder.typicode.com/users/\(userId)") {
              let session = URLSession(configuration: .default)
              let task = session.dataTask(with: url)  { (data, response, error) in
                  
@@ -18,8 +17,10 @@ struct PostApi  {
                  }
                  
                  if let safeData = data {
-                     let parsedPosts = self.parseJSON(postsData: safeData)
-                     completion(.success(parsedPosts))
+                     if let parsedUser = self.parseJSON(UserData: safeData){
+                         
+                         completion(.success(parsedUser))
+                     }
                  }else {
                      completion(.failure("error json" as! Error))
                  }
@@ -29,18 +30,15 @@ struct PostApi  {
      }
     
 
-    
-    
-    
-     
-     func parseJSON(postsData: Data) -> [Post] {
+  
+     func parseJSON(UserData: Data) -> User? {
          let decoder = JSONDecoder()
          do {
-             let posts = try decoder.decode([Post].self, from: postsData)
-             return posts
+             let user = try decoder.decode(User.self, from: UserData)
+             return user
          } catch {
              print()
-             return []
+             return nil
          }
      }
 }
