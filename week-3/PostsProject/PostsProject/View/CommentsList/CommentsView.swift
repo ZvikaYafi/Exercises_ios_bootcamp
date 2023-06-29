@@ -16,7 +16,6 @@ struct CommentsView: View {
             if let comments = commentsViewModel.comments {
                 // Create a list that displays the `comments`
                 List(comments) { comment in
-                    // Create a horizontal stack (`HStack`) container
                     HStack {
                        
                         // Display the comment's body
