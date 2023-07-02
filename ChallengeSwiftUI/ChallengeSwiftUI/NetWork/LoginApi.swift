@@ -36,9 +36,7 @@ class LoginApi {
                 print(parsedUser)
                 ProductApi.shared.token = parsedUser.token
             }
-             
-           
-     
+
         }
     }
    

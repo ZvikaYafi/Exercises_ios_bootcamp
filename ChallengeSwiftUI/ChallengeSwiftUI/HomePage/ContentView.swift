@@ -4,7 +4,7 @@ struct ContentView: View {
     
     @StateObject private var registrationViewModel = RegistrationViewModel()
     @StateObject private var loginViewModel = LoginViewModel()
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -14,35 +14,8 @@ struct ContentView: View {
                     .padding(.bottom, 200)
                     .foregroundColor(.blue)
                 
-                NavigationLink(destination: RegistrationView(viewModel: registrationViewModel)) {
-                    Text("Sign-Up")
-                        .foregroundColor(.blue)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .cornerRadius(10)
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 20,
-                                style: .continuous
-                            )
-                            .stroke(.blue, lineWidth: 2)
-                        )
-                }
-                
-                NavigationLink(destination: LoginView(viewModel: loginViewModel)) {
-                    Text("Log-In")
-                        .foregroundColor(.blue)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .cornerRadius(10)
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 20,
-                                style: .continuous
-                            )
-                            .stroke(.blue, lineWidth: 2)
-                        )
-                }
+                ButoonView(destination:RegistrationView(viewModel: registrationViewModel), title: "Sing-Up")
+                ButoonView(destination: LoginView(viewModel: loginViewModel), title: "Log-In")
             }
             .padding()
         }

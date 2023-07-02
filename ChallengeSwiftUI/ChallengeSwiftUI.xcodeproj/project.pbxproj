@@ -29,6 +29,8 @@
 		9E6E0B192A4D87DE005C4B97 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0B182A4D87DE005C4B97 /* LoginViewModel.swift */; };
 		9E6E0B1B2A4D9589005C4B97 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0B1A2A4D9589005C4B97 /* ProductView.swift */; };
 		9E6E0B222A4DD6C2005C4B97 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0B212A4DD6C2005C4B97 /* AuthButton.swift */; };
+		9EC566A22A5184720031A20A /* Products.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566A02A5184720031A20A /* Products.xcdatamodeld */; };
+		9EC566A42A51981A0031A20A /* ButoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566A32A51981A0031A20A /* ButoonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		9E6E0B182A4D87DE005C4B97 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9E6E0B1A2A4D9589005C4B97 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		9E6E0B212A4DD6C2005C4B97 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		9EC566A12A5184720031A20A /* Products.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Products.xcdatamodel; sourceTree = "<group>"; };
+		9EC566A32A51981A0031A20A /* ButoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButoonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		9E6E0AC22A4C3E08005C4B97 = {
 			isa = PBXGroup;
 			children = (
+				9EC566A02A5184720031A20A /* Products.xcdatamodeld */,
 				9E6E0ACD2A4C3E08005C4B97 /* ChallengeSwiftUI */,
 				9E6E0ADE2A4C3E0B005C4B97 /* ChallengeSwiftUITests */,
 				9E6E0AE82A4C3E0B005C4B97 /* ChallengeSwiftUIUITests */,
@@ -166,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				9E6E0AD02A4C3E08005C4B97 /* ContentView.swift */,
+				9EC566A32A51981A0031A20A /* ButoonView.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 				9E6E0AFA2A4C3ED4005C4B97 /* RegistrationView.swift in Sources */,
 				9E6E0B132A4C987A005C4B97 /* PasswordFieldView.swift in Sources */,
 				9E6E0AD12A4C3E08005C4B97 /* ContentView.swift in Sources */,
+				9EC566A22A5184720031A20A /* Products.xcdatamodeld in Sources */,
 				9E6E0AFF2A4C4423005C4B97 /* RegisterApi.swift in Sources */,
 				9E6E0B0B2A4C5DBB005C4B97 /* RegistertionViewModel.swift in Sources */,
 				9E6E0B0D2A4C8590005C4B97 /* ProductViewModel.swift in Sources */,
@@ -362,6 +369,7 @@
 				9E6E0B192A4D87DE005C4B97 /* LoginViewModel.swift in Sources */,
 				9E6E0B172A4D7FD3005C4B97 /* User.swift in Sources */,
 				9E6E0AFC2A4C3EF5005C4B97 /* LoginView.swift in Sources */,
+				9EC566A42A51981A0031A20A /* ButoonView.swift in Sources */,
 				9E6E0ACF2A4C3E08005C4B97 /* ChallengeSwiftUIApp.swift in Sources */,
 				9E6E0B012A4C4903005C4B97 /* ProductApi.swift in Sources */,
 				9E6E0B042A4C4973005C4B97 /* Product.swift in Sources */,
@@ -691,6 +699,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9EC566A02A5184720031A20A /* Products.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9EC566A12A5184720031A20A /* Products.xcdatamodel */,
+			);
+			currentVersion = 9EC566A12A5184720031A20A /* Products.xcdatamodel */;
+			path = Products.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E6E0AC32A4C3E08005C4B97 /* Project object */;
 }

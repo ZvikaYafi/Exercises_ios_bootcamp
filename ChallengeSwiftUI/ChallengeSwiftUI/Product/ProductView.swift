@@ -10,15 +10,27 @@ struct ProductView: View {
         
         List(products) { product in
             HStack(spacing: 16) {
-                if let firstImageURLString = product.images.first,
-                   let firstImageURL = URL(string: firstImageURLString) {
-                    AsyncImage(url: firstImageURL) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 120)
-                    } placeholder: {
-                        ProgressView()
+                
+                VStack {
+                    if let firstImageURLString = product.images.first,
+                       let firstImageURL = URL(string: firstImageURLString) {
+                        AsyncImage(url: firstImageURL) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 120, height: 120)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .padding(.bottom, 10)
+                    }
+                    Button(action: {
+                        productsVM.toggleFavorite(productID: product.id)
+                        productsVM.refreshProducts(category: category)
+                    }) {
+                        Image(systemName: productsVM.isFavorite(productID: product.id) ? "star.fill" : "star")
+                            .font(.system(size: 24))
+                            .foregroundColor(productsVM.isFavorite(productID: product.id) ? .yellow : .primary)
                     }
                 }
                 
@@ -38,13 +50,6 @@ struct ProductView: View {
             .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
         }
-        .padding()
     }
 }
 
-
-struct ProductView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductView(category: .constant("Your Category"),productsVM: ProductViewModel())
-    }
-}

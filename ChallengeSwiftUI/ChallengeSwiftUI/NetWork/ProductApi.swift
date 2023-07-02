@@ -35,6 +35,7 @@ class ProductApi {
         throw URLError(.badURL)
     }
     
+    
     func parseJSON(productsData: Data) throws -> [Product] {
         let decoder = JSONDecoder()
         return try decoder.decode([Product].self, from: productsData)

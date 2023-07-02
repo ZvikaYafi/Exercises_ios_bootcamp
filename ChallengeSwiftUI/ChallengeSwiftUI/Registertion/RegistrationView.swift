@@ -4,7 +4,7 @@ struct RegistrationView: View {
     
     @StateObject var viewModel: RegistrationViewModel
     @State private var registrationComplete: Bool = false
-    
+
     var body: some View {
         VStack(spacing: 20) {
             Text("Sing-Up")
@@ -16,7 +16,6 @@ struct RegistrationView: View {
             TextFieldView(title: "Last Name", text: $viewModel.lastName)
             TextFieldView(title: "Username", text: $viewModel.username)
             PasswordFieldView(title: "Password", password: $viewModel.password)
-            
             AuthButton(buttonText: "Sing-Up", action: register)
 
             
