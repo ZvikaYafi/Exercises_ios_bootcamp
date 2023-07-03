@@ -5,7 +5,7 @@ class RegisterApi {
     
     static var shared = RegisterApi()
     
-    private let registerURL = "https://balink.onlink.dev/register"
+    private let registerURL = "https://balink.onlink.dev/users/register"
     
     // create user and send token to product api
     func createUser(firstName: String, lastName: String, userName: String, password: String) async throws {
@@ -37,12 +37,11 @@ class RegisterApi {
             } catch {
                 //hendle error
             }
-            
             let (data,_) = try await URLSession.shared.data(for: request)
             
             let token = String(data: data, encoding: .utf8)
-            ProductApi.shared.token = token
-            
+            UserDefaults.standard.set(token, forKey: "AuthToken")
+
         }
     }
     

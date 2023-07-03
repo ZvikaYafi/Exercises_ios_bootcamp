@@ -3,8 +3,18 @@ import Foundation
 
 class ProductViewModel: ObservableObject {
     
-    @Published var products : [Product]?
-    @Published var categories : [String]?
+    @Published var products : [Product] = []
+    
+    func getProductsFromServices(category: String) async {
+          do {
+              let fetchedProducts = try await ProductApi.shared.getProductsByCategory(category: category)
+              DispatchQueue.main.async {
+                  self.products = fetchedProducts
+              }
+          } catch {
+              // Handle error
+          }
+      }
     
     
     // Checks if the product is in the favorites, if so removes if not adds
@@ -16,41 +26,9 @@ class ProductViewModel: ObservableObject {
     
     // Refresh products when user adds to favorites
     func refreshProducts(category: String){
-        self.products = getProductByCategory(category: category)
+        self.products = products
     }
     
-    
-    func getProductsFromServices() async {
-        do {
-            let fetchedProducts = try await ProductApi.shared.getAllProducts()
-            DispatchQueue.main.async {
-                self.products = fetchedProducts
-                self.categories = self.getUniqueCategories()
-            }
-        } catch {
-            // Handle error
-        }
-    }
-    
-    // Filter the products by categories
-    func getProductByCategory(category: String) -> [Product] {
-        guard let products = products else {return []}
-        return products.filter { $0.category == category }
-    }
-    
-    
-    // Returns a list of categories
-    func getUniqueCategories() -> [String] {
-        guard let products = products else { return [] }
-        
-        var uniqueCategories: [String] = []
-        for product in products {
-            if !uniqueCategories.contains(product.category) {
-                uniqueCategories.append(product.category)
-            }
-        }
-        return uniqueCategories
-    }
     
     // Saves a product in favorites
     func saveFavoriteProduct(productID: Int) {

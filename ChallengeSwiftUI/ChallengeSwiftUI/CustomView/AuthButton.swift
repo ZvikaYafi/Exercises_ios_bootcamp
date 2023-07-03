@@ -1,5 +1,6 @@
 import SwiftUI
 struct AuthButton: View {
+    
     var buttonText: String
     var action: () -> Void
     

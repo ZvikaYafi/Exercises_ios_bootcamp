@@ -1,15 +1,18 @@
 
 import Foundation
 
-class ProductApi {
-    
-    static var shared = ProductApi()
 
+class CategoryApi {
+    
     
     var token = UserDefaults.standard.object(forKey: "AuthToken") as? String
 
-    func getProductsByCategory(category: String) async throws -> [Product] {
-        if let url = URL(string: "https://balink.onlink.dev/categories/\(category)" ) {
+    static var shared = CategoryApi()
+
+
+    func getAllCategpry() async throws -> [String] {
+        
+        if let url = URL(string: "https://balink.onlink.dev/categories") {
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
@@ -25,19 +28,22 @@ class ProductApi {
             if let res = response as? HTTPURLResponse ,
                res.statusCode == 200 {
                 
-                let parsedProducts = try self.parseJSON(productsData: data)
-                
-                return parsedProducts
+                let parsedCategory = try self.parseJSON(categoryData: data)
+                                
+                return parsedCategory
             }
             throw URLError(.badServerResponse)
         }
         throw URLError(.badURL)
     }
     
-    func parseJSON(productsData: Data) throws -> [Product] {
+    
+    func parseJSON(categoryData: Data) throws -> [String] {
         let decoder = JSONDecoder()
-        return try decoder.decode([Product].self, from: productsData)
+        return try decoder.decode([String].self, from: categoryData)
         
     }
-    
 }
+
+
+

@@ -1,55 +1,31 @@
 import SwiftUI
 
-struct ProductView: View {
+struct ProductView: View{
     
     @Binding var category: String
-    @ObservedObject var productsVM : ProductViewModel
+    
+    @StateObject var productsVM = ProductViewModel()
     
     var body: some View {
-        let products = productsVM.getProductByCategory(category: category)
         
+        
+        Text(category)
+            .font(.custom("Pacifico-Regular", size: 30))
+            .fontWeight(.bold)
+            .padding(.vertical, 20)
+        
+        let products = productsVM.products
+        // List of products
         List(products) { product in
-            HStack(spacing: 16) {
-                
-                VStack {
-                    if let firstImageURLString = product.images.first,
-                       let firstImageURL = URL(string: firstImageURLString) {
-                        AsyncImage(url: firstImageURL) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 120, height: 120)
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .padding(.bottom, 10)
-                    }
-                    Button(action: {
-                        productsVM.toggleFavorite(productID: product.id)
-                        productsVM.refreshProducts(category: category)
-                    }) {
-                        Image(systemName: productsVM.isFavorite(productID: product.id) ? "star.fill" : "star")
-                            .font(.system(size: 24))
-                            .foregroundColor(productsVM.isFavorite(productID: product.id) ? .yellow : .primary)
-                    }
-                }
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(product.title)
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                    
-                    Text(product.description)
-                        .font(.subheadline)
-                    
-                    Text("Price: $\(product.price)")
-                        .font(.subheadline)
+            CustomProductView(product: product)
+        } .onAppear {
+            Task {
+                do {
+                    await productsVM.getProductsFromServices(category: category)
                 }
             }
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(10)
         }
+        
     }
+       
 }
-

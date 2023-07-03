@@ -9,9 +9,9 @@ struct ContentView: View {
         NavigationStack {
             VStack(spacing: 20) {
                 Text("Welcome to challenge app")
-                    .font(.title)
+                    .font(.custom("Pacifico-Regular", size: 30))
                     .fontWeight(.bold)
-                    .padding(.bottom, 200)
+                    .padding(.bottom, 100)
                     .foregroundColor(.blue)
                 
                 ButoonView(destination:RegistrationView(viewModel: registrationViewModel), title: "Sing-Up")

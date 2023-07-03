@@ -33,8 +33,9 @@ class LoginApi {
                res.statusCode == 200 {
                 
                 let parsedUser = try self.parseJSON(userData: data)
-                print(parsedUser)
-                ProductApi.shared.token = parsedUser.token
+                
+                UserDefaults.standard.set(parsedUser.token, forKey: "AuthToken")
+
             }
 
         }
