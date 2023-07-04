@@ -6,7 +6,7 @@ struct FavoriteView: View {
     
     var body: some View {
         VStack {
-            Text("favorite products")
+            Text("Favorite Products")
                 .font(.custom("Pacifico-Regular", size: 30))
                 .fontWeight(.bold)
                 .padding(.vertical, 5)
@@ -19,6 +19,7 @@ struct FavoriteView: View {
                 }
             }
         }
+        
         .onAppear {
             Task {
                 await favoritesVM.getProductsFromServices()

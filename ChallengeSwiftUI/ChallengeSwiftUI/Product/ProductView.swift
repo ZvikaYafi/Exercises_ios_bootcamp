@@ -8,17 +8,21 @@ struct ProductView: View{
     
     var body: some View {
         
-        
-        Text(category)
-            .font(.custom("Pacifico-Regular", size: 30))
-            .fontWeight(.bold)
-            .padding(.vertical, 20)
-        
         let products = productsVM.products
         // List of products
         List(products) { product in
             CustomProductView(product: product)
-        } .onAppear {
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .principal) {
+                Text(category.capitalized)
+                    .bold()
+            }
+           
+
+            
+        }
+        .onAppear {
             Task {
                 do {
                     await productsVM.getProductsFromServices(category: category)

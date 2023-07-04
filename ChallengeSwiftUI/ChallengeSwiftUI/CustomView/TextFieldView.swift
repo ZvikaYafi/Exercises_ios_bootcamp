@@ -22,3 +22,4 @@ struct TextFieldView_Previews: PreviewProvider {
         TextFieldView(title: "First Name", text: $text)
     }
 }
+

@@ -1,9 +1,3 @@
-//
-//  ProductView.swift
-//  ChallengeSwiftUI
-//
-//  Created by Zvika-Yafi on 03/07/2023.
-//
 
 import SwiftUI
 
@@ -35,14 +29,15 @@ struct CustomProductView: View {
                         .font(.system(size: 24))
                         .foregroundColor(favoriteVM.isFavorite(productID: product.id) ? .yellow : .primary)
                 }
+                .buttonStyle(PlainButtonStyle()) // only click on button
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(product.title)
+                Text(product.title.capitalized)
                     .font(.headline)
                     .foregroundColor(.blue)
                 
-                Text(product.description)
+                Text(product.description.capitalized)
                     .font(.subheadline)
                 
                 Text("Price: $\(product.price)")

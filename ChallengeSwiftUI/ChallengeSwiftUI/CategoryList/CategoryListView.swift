@@ -2,64 +2,86 @@ import SwiftUI
 
 struct CategoryList: View {
     
-    @StateObject var  categoryVM = CategoryViewModel()
+    @StateObject var categoryVM = CategoryViewModel()
     
     @State var selectedCategory: String = ""
     @State var isActive: Bool = false
     @State var isFavoriteViewActive: Bool = false
     
-    
     var body: some View {
         VStack {
-            NavigationLink(destination: ProductView(category: $selectedCategory), isActive: $isActive) {
-                EmptyView()
-            }
-            .hidden()
-            
-            if let categories = categoryVM.categories {
-                HStack {
-                    Text("Categories")
-                        .font(.custom("Pacifico-Regular", size: 30))
-                        .fontWeight(.bold)
-                        .padding(.vertical, 20)
+            NavigationView {
+                VStack {
+                    NavigationLink(destination: ProductView(category: $selectedCategory), isActive: $isActive) {
+                        EmptyView()
+                    }
+                    .hidden()
                     
-                    Spacer()
-                    
-                    NavigationLink(destination: FavoriteView(), isActive: $isFavoriteViewActive) {
-                        ZStack {
-                            Image(systemName: "star.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(.yellow)
-                            
-                            Text("\(categoryVM.getDefaultArrayLength())")
-                                .font(.caption)
-                                .foregroundColor(.white)
-                                .padding(4)
-                                .background(.blue)
-                                .clipShape(Circle())
-                                .offset(x: 10, y: -10)
+                    if let categories = categoryVM.categories {
+                        ScrollView {
+                            LazyVStack(spacing: 20) {
+                                ForEach(categories, id: \.self) { category in
+                                    AuthButton(buttonText: category) {
+                                        selectedCategory = category
+                                        isActive = true
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
                         }
+                    } else {
+                        ProgressView()
+                    }
+                }
+                // TODO: add cached images
+                // 
+
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button {
+                            
+                        } label: {
+                            HStack{
+                                Image(systemName: "arrowshape.backward")
+                                Text("Back")
+                            }
+                        }
+
+                    }
+                    ToolbarItemGroup(placement: .principal) {
+                        Text("Categories")
                     }
                     
-                    
-                }
-                .padding()
-                ScrollView {
-                    LazyVStack(spacing: 20) {
-                        ForEach(categories, id: \.self) { category in
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        HStack {
+                            NavigationLink(destination: SearchView()) {
+                                Image(systemName: "magnifyingglass")
+                                    .font(.system(size: 24))
+                            }
+
                             
-                            AuthButton(buttonText: category) {
-                                selectedCategory = category
-                                isActive = true
+                            NavigationLink(destination: FavoriteView(), isActive: $isFavoriteViewActive) {
+                                ZStack {
+                                    Image(systemName: "star.fill")
+                                        .font(.system(size: 24))
+                                        .foregroundColor(.yellow)
+                                    
+                                    Text("\(categoryVM.getDefaultArrayLength())")
+                                        .font(.caption)
+                                        .foregroundColor(.white)
+                                        .padding(4)
+                                        .background(.blue)
+                                        .clipShape(Circle())
+                                        .offset(x: 10, y: -10)
+                                }
                             }
                         }
                     }
-                    .padding(.horizontal)
                 }
-            } else {
-                ProgressView()
             }
+            
         }
+        .navigationBarBackButtonHidden()
         .onAppear {
             Task {
                 do {
@@ -69,6 +91,7 @@ struct CategoryList: View {
         }
     }
 }
+
 
 struct CategoryList_Previews: PreviewProvider {
     static var previews: some View {

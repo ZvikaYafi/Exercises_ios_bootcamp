@@ -6,7 +6,7 @@ struct AuthButton: View {
     
     var body: some View {
         Button(action: action) {
-            Text(buttonText)
+            Text(buttonText.capitalized)
                 .foregroundColor(.blue)
                 .frame(maxWidth: .infinity)
                 .padding()

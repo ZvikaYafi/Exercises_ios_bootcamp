@@ -45,6 +45,9 @@
 		9EC566C12A52EEE00031A20A /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566C02A52EEE00031A20A /* CategoryApi.swift */; };
 		9EC566C52A52F6D90031A20A /* ProductApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566C42A52F6D90031A20A /* ProductApi.swift */; };
 		9EC566C92A5303590031A20A /* FavoriteApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566C82A5303590031A20A /* FavoriteApi.swift */; };
+		9EC566CE2A543C260031A20A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566CD2A543C250031A20A /* SearchView.swift */; };
+		9EC566D02A5444B00031A20A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566CF2A5444B00031A20A /* SearchViewModel.swift */; };
+		9EC566D22A5445330031A20A /* AllProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC566D12A5445330031A20A /* AllProductsAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,9 @@
 		9EC566C02A52EEE00031A20A /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
 		9EC566C42A52F6D90031A20A /* ProductApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductApi.swift; sourceTree = "<group>"; };
 		9EC566C82A5303590031A20A /* FavoriteApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteApi.swift; sourceTree = "<group>"; };
+		9EC566CD2A543C250031A20A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		9EC566CF2A5444B00031A20A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		9EC566D12A5445330031A20A /* AllProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,9 +155,10 @@
 		9E6E0ACD2A4C3E08005C4B97 /* ChallengeSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				9EC566CC2A543BFD0031A20A /* Search */,
 				9EC566B32A52B9E80031A20A /* CategoryList */,
 				9EC566AD2A52AF160031A20A /* FavoriteProduct */,
-				9E6E0B202A4DD662005C4B97 /* NetWork */,
+				9E6E0B202A4DD662005C4B97 /* Network */,
 				9E6E0B1F2A4DC9C3005C4B97 /* Login */,
 				9E6E0B1E2A4DC992005C4B97 /* Registertion */,
 				9E6E0B1D2A4DC95C005C4B97 /* Product */,
@@ -238,7 +245,7 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		9E6E0B202A4DD662005C4B97 /* NetWork */ = {
+		9E6E0B202A4DD662005C4B97 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				9EC566C02A52EEE00031A20A /* CategoryApi.swift */,
@@ -246,8 +253,9 @@
 				9E6E0AFE2A4C4423005C4B97 /* RegisterApi.swift */,
 				9EC566C42A52F6D90031A20A /* ProductApi.swift */,
 				9E6E0B142A4D5F56005C4B97 /* LoginApi.swift */,
+				9EC566D12A5445330031A20A /* AllProductsAPI.swift */,
 			);
-			path = NetWork;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		9EC566AD2A52AF160031A20A /* FavoriteProduct */ = {
@@ -266,6 +274,15 @@
 				9EC566B42A52BDE30031A20A /* CategoryViewModel.swift */,
 			);
 			path = CategoryList;
+			sourceTree = "<group>";
+		};
+		9EC566CC2A543BFD0031A20A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				9EC566CD2A543C250031A20A /* SearchView.swift */,
+				9EC566CF2A5444B00031A20A /* SearchViewModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,8 +421,10 @@
 				9E6E0B132A4C987A005C4B97 /* PasswordFieldView.swift in Sources */,
 				9E6E0AD12A4C3E08005C4B97 /* ContentView.swift in Sources */,
 				9EC566A22A5184720031A20A /* Products.xcdatamodeld in Sources */,
+				9EC566D22A5445330031A20A /* AllProductsAPI.swift in Sources */,
 				9E6E0AFF2A4C4423005C4B97 /* RegisterApi.swift in Sources */,
 				9E6E0B0B2A4C5DBB005C4B97 /* RegistertionViewModel.swift in Sources */,
+				9EC566CE2A543C260031A20A /* SearchView.swift in Sources */,
 				9EC566C52A52F6D90031A20A /* ProductApi.swift in Sources */,
 				9EC566AA2A51F6AF0031A20A /* FavoriteView.swift in Sources */,
 				9E6E0B0D2A4C8590005C4B97 /* ProductViewModel.swift in Sources */,
@@ -421,6 +440,7 @@
 				9E6E0ACF2A4C3E08005C4B97 /* ChallengeSwiftUIApp.swift in Sources */,
 				9EC566C12A52EEE00031A20A /* CategoryApi.swift in Sources */,
 				9E6E0B042A4C4973005C4B97 /* Product.swift in Sources */,
+				9EC566D02A5444B00031A20A /* SearchViewModel.swift in Sources */,
 				9E6E0B222A4DD6C2005C4B97 /* AuthButton.swift in Sources */,
 				9E6E0B082A4C5BD1005C4B97 /* TextFieldView.swift in Sources */,
 			);
