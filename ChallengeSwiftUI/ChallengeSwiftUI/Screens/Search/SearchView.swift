@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct SearchView: View {
     @StateObject var searchVM = SearchViewModel()
     @State private var searchText = ""

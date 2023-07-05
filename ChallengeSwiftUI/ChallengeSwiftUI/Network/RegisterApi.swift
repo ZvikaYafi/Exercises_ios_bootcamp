@@ -1,4 +1,3 @@
-
 import Foundation
 
 class RegisterApi {
@@ -9,13 +8,6 @@ class RegisterApi {
     
     // create user and send token to product api
     func createUser(firstName: String, lastName: String, userName: String, password: String) async throws {
-        
-        guard isInputValid(
-            firstname: firstName,
-            lastname: lastName,
-            username: userName,
-            password: password)
-        else {return}
         
         if let url = URL(string: registerURL) {
             var request = URLRequest(url: url)
@@ -35,30 +27,32 @@ class RegisterApi {
                 let jsonData = try JSONSerialization.data(withJSONObject: parameters)
                 request.httpBody = jsonData
             } catch {
-                //hendle error
+                throw RegistrationErrorApi.invalidRequest
             }
-            let (data,_) = try await URLSession.shared.data(for: request)
             
-            let token = String(data: data, encoding: .utf8)
-            UserDefaults.standard.set(token, forKey: "AuthToken")
-
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            if let res = response as? HTTPURLResponse,
+               res.statusCode == 200 {
+                
+                let token = String(data: data, encoding: .utf8)
+                UserDefaults.standard.set(token, forKey: "AuthToken")
+                
+            } else {
+                throw RegistrationErrorApi.invalidResponse
+            }
+        } else {
+            throw RegistrationErrorApi.invalidURL
         }
     }
-    
-    // Check all inputs if its ok
-    func isInputValid(firstname: String, lastname: String, username: String, password: String) -> Bool {
-        let nameRegex = #"^[a-zA-Z0-9]+$"#
-        let emailRegex = #"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"#
-        
-        let isFirstNameValid = firstname.matches(nameRegex)
-        let isLastNameValid = lastname.matches(nameRegex)
-        let isUsernameValid = username.matches(emailRegex)
-        
-        return isFirstNameValid && isLastNameValid && isUsernameValid
-    }
-    
-    
 }
+
+enum RegistrationErrorApi: Error {
+    case invalidRequest
+    case invalidResponse
+    case invalidURL
+}
+
 
 // extension String 
 extension String {

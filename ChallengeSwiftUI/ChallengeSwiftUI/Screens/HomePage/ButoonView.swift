@@ -3,6 +3,8 @@ import SwiftUI
 struct ButoonView<Destination: View>: View {
     var destination: Destination
     var title: String
+    
+    
      
     var body: some View {
         NavigationLink(destination: destination) {

@@ -2,9 +2,10 @@ import SwiftUI
 
 struct LoginView: View {
     
-    
     @StateObject var viewModel: LoginViewModel
+    
     @State private var loginComplete: Bool = false
+    @State private var errorMessage: String = ""
     
     
     var body: some View {
@@ -12,7 +13,7 @@ struct LoginView: View {
             Text("Login")
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(.blue)
+                .foregroundColor(.blue) 
             
             TextFieldView(
                 title: "Username",
@@ -29,14 +30,21 @@ struct LoginView: View {
             }
         }
         .padding()
+        .alert(isPresented: Binding<Bool>.constant(!errorMessage.isEmpty)) {
+            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
+                errorMessage = ""
+            }))
+        }
     }
     private func login() {
         Task {
             do {
-                try await viewModel.LoginUser()
+                try await viewModel.loginUser()
                 loginComplete = true
             } catch {
-                print(error)
+                DispatchQueue.main.async {
+                    errorMessage = error.localizedDescription
+                }
             }
         }
     }

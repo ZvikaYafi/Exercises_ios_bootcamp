@@ -34,20 +34,10 @@ struct CategoryList: View {
                     }
                 }
                 // TODO: add cached images
-                // 
-
+                //
+                
                 .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button {
-                            
-                        } label: {
-                            HStack{
-                                Image(systemName: "arrowshape.backward")
-                                Text("Back")
-                            }
-                        }
-
-                    }
+              
                     ToolbarItemGroup(placement: .principal) {
                         Text("Categories")
                     }
@@ -58,7 +48,7 @@ struct CategoryList: View {
                                 Image(systemName: "magnifyingglass")
                                     .font(.system(size: 24))
                             }
-
+                            
                             
                             NavigationLink(destination: FavoriteView(), isActive: $isFavoriteViewActive) {
                                 ZStack {

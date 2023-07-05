@@ -155,15 +155,10 @@
 		9E6E0ACD2A4C3E08005C4B97 /* ChallengeSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				9EC566CC2A543BFD0031A20A /* Search */,
-				9EC566B32A52B9E80031A20A /* CategoryList */,
-				9EC566AD2A52AF160031A20A /* FavoriteProduct */,
+				9EC566D42A55613B0031A20A /* Screens */,
+				9EC566D32A55482B0031A20A /* Models */,
 				9E6E0B202A4DD662005C4B97 /* Network */,
-				9E6E0B1F2A4DC9C3005C4B97 /* Login */,
-				9E6E0B1E2A4DC992005C4B97 /* Registertion */,
-				9E6E0B1D2A4DC95C005C4B97 /* Product */,
 				9E6E0B1C2A4DC936005C4B97 /* CustomView */,
-				9E6E0AF82A4C3EA9005C4B97 /* HomePage */,
 				9E6E0ACE2A4C3E08005C4B97 /* ChallengeSwiftUIApp.swift */,
 				9E6E0AD22A4C3E0B005C4B97 /* Assets.xcassets */,
 				9E6E0AD42A4C3E0B005C4B97 /* Preview Content */,
@@ -220,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				9E6E0B1A2A4D9589005C4B97 /* ProductView.swift */,
-				9E6E0B032A4C4973005C4B97 /* Product.swift */,
 				9E6E0B0C2A4C8590005C4B97 /* ProductViewModel.swift */,
 			);
 			path = Product;
@@ -231,7 +225,6 @@
 			children = (
 				9E6E0B0A2A4C5DBB005C4B97 /* RegistertionViewModel.swift */,
 				9E6E0AF92A4C3ED4005C4B97 /* RegistrationView.swift */,
-				9E6E0B162A4D7FD3005C4B97 /* User.swift */,
 			);
 			path = Registertion;
 			sourceTree = "<group>";
@@ -283,6 +276,29 @@
 				9EC566CF2A5444B00031A20A /* SearchViewModel.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		9EC566D32A55482B0031A20A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9E6E0B032A4C4973005C4B97 /* Product.swift */,
+				9E6E0B162A4D7FD3005C4B97 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9EC566D42A55613B0031A20A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9E6E0AF82A4C3EA9005C4B97 /* HomePage */,
+				9E6E0B1E2A4DC992005C4B97 /* Registertion */,
+				9E6E0B1D2A4DC95C005C4B97 /* Product */,
+				9E6E0B1F2A4DC9C3005C4B97 /* Login */,
+				9EC566B32A52B9E80031A20A /* CategoryList */,
+				9EC566AD2A52AF160031A20A /* FavoriteProduct */,
+				9EC566CC2A543BFD0031A20A /* Search */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

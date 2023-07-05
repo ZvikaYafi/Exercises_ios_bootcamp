@@ -4,6 +4,7 @@ struct RegistrationView: View {
     
     @StateObject var viewModel: RegistrationViewModel
     @State private var registrationComplete: Bool = false
+    @State private var errorMessage: String = ""
 
     var body: some View {
         VStack(spacing: 20) {
@@ -24,18 +25,23 @@ struct RegistrationView: View {
             }
         }
         .padding()
+        .alert(isPresented: Binding<Bool>.constant(!errorMessage.isEmpty)) {
+            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
+                errorMessage = ""
+            }))
+        }
     }
     
     private func register() {
-        Task {
-            do {
-                try await viewModel.registerUser()
-                registrationComplete = true
-            } catch {
-                print(error)
+            Task {
+                do {
+                    try await viewModel.registerUser()
+                    registrationComplete = true
+                } catch {
+                    errorMessage = error.localizedDescription
+                }
             }
         }
-    }
 }
 
 struct RegistrationView_Previews: PreviewProvider {

@@ -18,9 +18,6 @@ struct ProductView: View{
                 Text(category.capitalized)
                     .bold()
             }
-           
-
-            
         }
         .onAppear {
             Task {
@@ -31,5 +28,5 @@ struct ProductView: View{
         }
         
     }
-       
+    
 }
