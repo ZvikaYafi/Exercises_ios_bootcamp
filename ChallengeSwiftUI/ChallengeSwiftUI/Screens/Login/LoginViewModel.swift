@@ -15,7 +15,7 @@ class LoginViewModel: ObservableObject {
                 throw error
             }
         } else {
-            throw LoginError.invalidInput
+            throw NSError(domain: "invalid input", code: 501)
         }
     }
     
@@ -28,7 +28,4 @@ class LoginViewModel: ObservableObject {
     }
 }
 
-enum LoginError: Error {
-    case invalidInput
-}
 

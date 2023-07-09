@@ -33,15 +33,14 @@ class RegisterApi {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             if let res = response as? HTTPURLResponse,
-               res.statusCode == 200 {
+               res.statusCode == 201 {
                 
-                let token = String(data: data, encoding: .utf8)
-                UserDefaults.standard.set(token, forKey: "AuthToken")
+                let token = try JSONDecoder().decode(Token.self, from: data)
                 
-            } else {
-                throw RegistrationErrorApi.invalidResponse
+                UserDefaults.standard.set(token.token, forKey: "AuthToken")
             }
-        } else {
+        }
+        else {
             throw RegistrationErrorApi.invalidURL
         }
     }
@@ -54,9 +53,13 @@ enum RegistrationErrorApi: Error {
 }
 
 
-// extension String 
+// extension String
 extension String {
     func matches(_ regex: String) -> Bool {
         return range(of: regex, options: .regularExpression) != nil
     }
+}
+
+struct Token: Codable {
+    let token: String
 }

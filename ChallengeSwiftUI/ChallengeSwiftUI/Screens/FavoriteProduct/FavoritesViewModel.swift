@@ -4,9 +4,7 @@ class FavoritesViewModel: ObservableObject {
     
     @Published var favoriteProducts: [Product] = []
     
-    
     func getProductsFromServices() async {
-        
         do {
             let fetchedProducts = try await FavoriteApi.shared.getProductsFavorite()
             DispatchQueue.main.async {
@@ -22,19 +20,14 @@ class FavoritesViewModel: ObservableObject {
         isFavorite(productID: productID) ?
         removeFavoriteProduct(productID: productID) :
         saveFavoriteProduct(productID: productID)
+        Task{
+            await getProductsFromServices()
+        }
     }
     
     // Refresh products when user adds to favorites
     func refreshProducts(){
         self.favoriteProducts = favoriteProducts
-    }
-    
-    
-    // Saves a product in favorites
-    func saveFavoriteProduct(productID: Int) {
-        var selectedProductIDs = UserDefaults.standard.array(forKey: "FavoriteProducts") as? [Int] ?? []
-        selectedProductIDs.append(productID)
-        UserDefaults.standard.set(selectedProductIDs, forKey: "FavoriteProducts")
     }
     
     // returns up the product is in favorites or not
@@ -46,14 +39,21 @@ class FavoritesViewModel: ObservableObject {
         return false
     }
     
-    // Removes a product in favorites
-     func removeFavoriteProduct(productID: Int) {
+    // Saves a product in favorites
+    func saveFavoriteProduct(productID: Int) {
+        var selectedProductIDs = UserDefaults.standard.array(forKey: "FavoriteProducts") as? [Int] ?? []
+        selectedProductIDs.append(productID)
+        UserDefaults.standard.set(selectedProductIDs, forKey: "FavoriteProducts")
+    }
+    
+    // Removes a product from favorites
+    func removeFavoriteProduct(productID: Int) {
         var selectedProductIDs = UserDefaults.standard.array(forKey: "FavoriteProducts") as? [Int] ?? []
         if let index = selectedProductIDs.firstIndex(of: productID) {
             selectedProductIDs.remove(at: index)
             UserDefaults.standard.set(selectedProductIDs, forKey: "FavoriteProducts")
         }
     }
-    
+
     
 }

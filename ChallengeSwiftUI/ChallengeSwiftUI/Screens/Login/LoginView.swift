@@ -9,29 +9,32 @@ struct LoginView: View {
     
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Login")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.blue) 
-            
-            TextFieldView(
-                title: "Username",
-                text: $viewModel.username
-            )
-            PasswordFieldView(
-                title: "Password",
-                password: $viewModel.password
-            )
-            
-            AuthButton(buttonText: "Login", action: login)
-            NavigationLink(destination: CategoryList(),isActive: $loginComplete){
-                EmptyView()
+         
+            VStack(spacing: 20) {
+                
+                Text("Login")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.blue)
+                
+                TextFieldView(
+                    title: "Username",
+                    text: $viewModel.username
+                )
+                PasswordFieldView(
+                    title: "Password",
+                    password: $viewModel.password
+                )
+                
+                AuthButton(buttonText: "Login", action: login)
+                NavigationLink(destination: CategoryList(),isActive: $loginComplete){
+                    EmptyView()
+                }
             }
-        }
+      
         .padding()
         .alert(isPresented: Binding<Bool>.constant(!errorMessage.isEmpty)) {
-            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: {
+            Alert(title: Text("Sorry"), message: Text(errorMessage), dismissButton: .default(Text("Close"), action: {
                 errorMessage = ""
             }))
         }

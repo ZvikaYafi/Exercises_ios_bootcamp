@@ -2,9 +2,11 @@
 import SwiftUI
 
 struct CustomProductView: View {
-    var product: Product
     
-    @StateObject private var favoriteVM = FavoritesViewModel()
+    var product: Product
+    var isFav: Bool
+    var action: () -> Void
+    
     
     var body: some View {
         HStack(spacing: 16) {
@@ -21,13 +23,10 @@ struct CustomProductView: View {
                     }
                     .padding(.bottom, 10)
                 }
-                Button(action: {
-                    favoriteVM.toggleFavorite(productID: product.id)
-                    favoriteVM.refreshProducts()
-                }) {
-                    Image(systemName: favoriteVM.isFavorite(productID: product.id) ? "star.fill" : "star")
+                Button(action: action) {
+                    Image(systemName: isFav ? "star.fill" : "star")
                         .font(.system(size: 24))
-                        .foregroundColor(favoriteVM.isFavorite(productID: product.id) ? .yellow : .primary)
+                        .foregroundColor(isFav ? .yellow : .primary)
                 }
                 .buttonStyle(PlainButtonStyle()) // only click on button
             }

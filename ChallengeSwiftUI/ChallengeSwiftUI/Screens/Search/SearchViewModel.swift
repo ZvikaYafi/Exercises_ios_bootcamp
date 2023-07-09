@@ -11,7 +11,6 @@ class SearchViewModel: ObservableObject {
             let fetchedCategory = try await AllProductApi.shared.getProducts()
             DispatchQueue.main.async {
                 self.products = fetchedCategory
-                print(fetchedCategory)
             }
         } catch {
             // Handle error

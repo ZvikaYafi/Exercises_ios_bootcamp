@@ -6,25 +6,41 @@ struct FavoriteView: View {
     
     var body: some View {
         VStack {
-            Text("Favorite Products")
-                .font(.custom("Pacifico-Regular", size: 30))
-                .fontWeight(.bold)
-                .padding(.vertical, 5)
-            
+            title("Favorite Products")
             VStack {
                 if favoritesVM.favoriteProducts.isEmpty {
                     EmptyFavoritesView()
                 } else {
-                    FavoriteListView(favoriteProducts: favoritesVM.favoriteProducts)
+                    getFavoriteListView(for: favoritesVM.favoriteProducts)
                 }
             }
         }
-        
         .onAppear {
             Task {
                 await favoritesVM.getProductsFromServices()
             }
         }
+    }
+    
+    @ViewBuilder
+    private func getFavoriteListView(for favoriteProducts: [Product]) -> some View {
+        
+        List(favoriteProducts, id: \.id) { product in
+            CustomProductView(product: product,
+                              isFav: favoritesVM.isFavorite(productID: product.id),
+                              action: {
+                favoritesVM.toggleFavorite(productID: product.id)
+                favoritesVM.refreshProducts()
+            })
+        }
+    }
+    
+    @ViewBuilder
+    private func title(_ title: String) -> some View {
+        Text(title)
+            .font(.custom("Pacifico-Regular", size: 30))
+            .fontWeight(.bold)
+            .padding(.vertical, 5)
     }
 }
 
@@ -32,18 +48,6 @@ struct FavoriteView: View {
 struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
         FavoriteView()
-    }
-}
-
-
-struct FavoriteListView: View {
-    var favoriteProducts: [Product]
-    
-    var body: some View {
-        List(favoriteProducts, id: \.id) { product in
-            CustomProductView(product: product)
-            
-        }
     }
 }
 

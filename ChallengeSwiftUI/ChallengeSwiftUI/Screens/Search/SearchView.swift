@@ -2,16 +2,24 @@ import SwiftUI
 
 
 struct SearchView: View {
+    
     @StateObject var searchVM = SearchViewModel()
+    @StateObject var favoritesVM = FavoritesViewModel()
     @State private var searchText = ""
     
     var body: some View {
         NavigationView {
             VStack {
+                
                 SearchBarView(searchText: $searchText)
                 
                 List(searchVM.products.filter { searchText.isEmpty || $0.title.localizedCaseInsensitiveContains(searchText) }, id: \.id) { product in
-                   CustomProductView(product: product)
+                    CustomProductView(product: product,
+                                      isFav: favoritesVM.isFavorite(productID: product.id),
+                                      action: {
+                        favoritesVM.toggleFavorite(productID: product.id)
+                        favoritesVM.refreshProducts()
+                    })
                 }
             }
             .onAppear {
@@ -32,14 +40,13 @@ struct SearchView_Previews: PreviewProvider {
 struct SearchBarView: View {
     @Binding var searchText: String
     @FocusState private var isTextFieldFocused: Bool
-    var onCommit: () -> Void = {}
     
     var body: some View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
                 
-                TextField("Search", text: $searchText, onCommit: onCommit)
+                TextField("Search", text: $searchText)
                     .focused($isTextFieldFocused)
                     .foregroundColor(.primary)
                 
