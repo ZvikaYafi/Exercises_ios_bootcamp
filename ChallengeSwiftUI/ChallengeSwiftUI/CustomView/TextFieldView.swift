@@ -10,7 +10,10 @@ struct TextFieldView: View {
             Text(title)
                 .foregroundColor(.blue)
             TextField("", text: $text)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .background(Color.gray.opacity(0.1).cornerRadius(10))
+                .foregroundColor(.blue)
+                .font(.headline)
         }
     }
 }

@@ -84,7 +84,7 @@ struct CategoryList: View {
     @ViewBuilder
     func categotyList(categories: [String]) -> some View {
         ScrollView {
-            LazyVStack(spacing: 20) {
+            VStack(spacing: 20) {
                 ForEach(categories, id: \.self) { category in
                     AuthButton(buttonText: category) {
                         selectedCategory = category

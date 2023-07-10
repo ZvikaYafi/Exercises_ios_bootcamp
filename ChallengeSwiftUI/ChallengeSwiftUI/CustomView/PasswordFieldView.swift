@@ -16,11 +16,17 @@ struct PasswordFieldView: View {
             HStack {
                 if isShowingPassword {
                     TextField("", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                        .background(Color.gray.opacity(0.1).cornerRadius(10))
+                        .foregroundColor(.blue)
+                        .font(.headline)
+                    
                 } else {
                     SecureField("", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
+                        .padding()
+                        .background(Color.gray.opacity(0.1).cornerRadius(10))
+                        .foregroundColor(.blue)
+                    .font(.headline)                }
                 
                 Button(action: {
                     isShowingPassword.toggle()
